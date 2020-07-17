@@ -1,6 +1,6 @@
-Trestle.resource(:categories) do
+Trestle.resource(:lessons) do
   menu do
-    item :categories, icon: "fa fa-boxes"
+    item :lessons, icon: "fa fa-heartbeat"
   end
 
   # Customize the table columns shown on the index view.
@@ -8,13 +8,15 @@ Trestle.resource(:categories) do
   table do
     column :name
     column :price
+    column :category
+    column :thematic
     column :created_at, align: :center
     actions
   end
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |category|
+  # form do |lesson|
   #   text_field :name
   #
   #   row do
@@ -31,6 +33,6 @@ Trestle.resource(:categories) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:category).permit(:name, ...)
+  #   params.require(:lesson).permit(:name, ...)
   # end
 end
