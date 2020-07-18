@@ -1,6 +1,7 @@
 Trestle.resource(:packages) do
+  remove_action :destroy
   menu do
-    item :packages, icon: "fa fa-star"
+    item :packages, icon: "fa fa-star", priority: 6, group: 'Commandes'
   end
 
   # Customize the table columns shown on the index view.
@@ -15,14 +16,11 @@ Trestle.resource(:packages) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |package|
-  #   text_field :name
-  #
-  #   row do
-  #     col { datetime_field :updated_at }
-  #     col { datetime_field :created_at }
-  #   end
-  # end
+  form do |package|
+    select :category, Category.all
+    text_field :quantity
+    text_field :price
+  end
 
   # By default, all parameters passed to the update and create actions will be
   # permitted. If you do not have full trust in your users, you should explicitly

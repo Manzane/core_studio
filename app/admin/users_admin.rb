@@ -1,6 +1,7 @@
 Trestle.resource(:users) do
+  remove_action :destroy, :new, :update
   menu do
-    item :users, icon: "fa fa-users"
+    item :users, icon: "fa fa-users", priority: 8
   end
 
   # Customize the table columns shown on the index view.

@@ -1,6 +1,7 @@
 Trestle.resource(:orders) do
+  remove_action :destroy, :new, :update
   menu do
-    item :orders, icon: "fa fa-shopping-cart"
+    item :orders, icon: "fa fa-shopping-cart", priority: 7, group: 'Commandes'
   end
 
   # Customize the table columns shown on the index view.
