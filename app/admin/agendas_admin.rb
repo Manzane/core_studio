@@ -7,7 +7,8 @@ Trestle.resource(:agendas) do
   #
   table do
     column :lesson
-    column :time
+    column :start
+    column :end
     column :capacity
     column :created_at, align: :center
     actions
@@ -17,7 +18,8 @@ Trestle.resource(:agendas) do
   #
   form do |agenda|
     select :lesson, Lesson.all
-    datetime_field :time
+    datetime_field :start
+    datetime_field :end
     text_field :capacity
   end
 
