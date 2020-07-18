@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_210205) do
+ActiveRecord::Schema.define(version: 2020_07_18_094626) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,11 +47,49 @@ ActiveRecord::Schema.define(version: 2020_07_17_210205) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "agendas", force: :cascade do |t|
+    t.datetime "time"
+    t.integer "capacity"
+    t.bigint "lesson_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_agendas_on_lesson_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "user_id", null: false
+    t.bigint "agenda_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["agenda_id"], name: "index_bookings_on_agenda_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.bigint "package_id", null: false
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_cart_items_on_order_id"
+    t.index ["package_id"], name: "index_cart_items_on_package_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "credits", force: :cascade do |t|
+    t.integer "quantity"
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_credits_on_category_id"
+    t.index ["user_id"], name: "index_credits_on_user_id"
   end
 
   create_table "lessons", force: :cascade do |t|
@@ -63,6 +101,25 @@ ActiveRecord::Schema.define(version: 2020_07_17_210205) do
     t.bigint "thematic_id", null: false
     t.index ["category_id"], name: "index_lessons_on_category_id"
     t.index ["thematic_id"], name: "index_lessons_on_thematic_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "amount"
+    t.string "state"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "packages", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "price"
+    t.bigint "category_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_packages_on_category_id"
   end
 
   create_table "thematics", force: :cascade do |t|
@@ -86,6 +143,15 @@ ActiveRecord::Schema.define(version: 2020_07_17_210205) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "agendas", "lessons"
+  add_foreign_key "bookings", "agendas"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "cart_items", "orders"
+  add_foreign_key "cart_items", "packages"
+  add_foreign_key "credits", "categories"
+  add_foreign_key "credits", "users"
   add_foreign_key "lessons", "categories"
   add_foreign_key "lessons", "thematics"
+  add_foreign_key "orders", "users"
+  add_foreign_key "packages", "categories"
 end
