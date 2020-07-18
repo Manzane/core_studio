@@ -1,4 +1,5 @@
 Trestle.resource(:categories) do
+  remove_action :destroy
   menu do
     item :categories, icon: "fa fa-boxes", priority: 1, group: 'Cours'
   end
