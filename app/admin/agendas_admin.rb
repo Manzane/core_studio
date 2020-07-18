@@ -1,21 +1,24 @@
-Trestle.resource(:thematics) do
-  remove_action :destroy
+Trestle.resource(:agendas) do
   menu do
-    item :thematics, icon: "fa fa-spa", priority: 2, group: 'Cours'
+    item :agendas, icon: "fa fa-calendar-alt", priority: 4, group: 'Planning'
   end
 
   # Customize the table columns shown on the index view.
   #
   table do
-    column :name
+    column :lesson
+    column :time
+    column :capacity
     column :created_at, align: :center
     actions
   end
 
   # Customize the form fields shown on the new/edit views.
   #
-  form do |thematic|
-    text_field :name
+  form do |agenda|
+    select :lesson, Lesson.all
+    datetime_field :time
+    text_field :capacity
   end
 
   # By default, all parameters passed to the update and create actions will be
@@ -26,6 +29,6 @@ Trestle.resource(:thematics) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:thematic).permit(:name, ...)
+  #   params.require(:agenda).permit(:name, ...)
   # end
 end

@@ -1,21 +1,25 @@
-Trestle.resource(:thematics) do
+Trestle.resource(:packages) do
   remove_action :destroy
   menu do
-    item :thematics, icon: "fa fa-spa", priority: 2, group: 'Cours'
+    item :packages, icon: "fa fa-star", priority: 6, group: 'Commandes'
   end
 
   # Customize the table columns shown on the index view.
   #
   table do
-    column :name
+    column :category
+    column :quantity
+    column :price
     column :created_at, align: :center
     actions
   end
 
   # Customize the form fields shown on the new/edit views.
   #
-  form do |thematic|
-    text_field :name
+  form do |package|
+    select :category, Category.all
+    text_field :quantity
+    text_field :price
   end
 
   # By default, all parameters passed to the update and create actions will be
@@ -26,6 +30,6 @@ Trestle.resource(:thematics) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:thematic).permit(:name, ...)
+  #   params.require(:package).permit(:name, ...)
   # end
 end

@@ -1,22 +1,29 @@
-Trestle.resource(:thematics) do
-  remove_action :destroy
+Trestle.resource(:users) do
+  remove_action :destroy, :new, :update
   menu do
-    item :thematics, icon: "fa fa-spa", priority: 2, group: 'Cours'
+    item :users, icon: "fa fa-users", priority: 8
   end
 
   # Customize the table columns shown on the index view.
   #
   table do
-    column :name
+    column :first_name
+    column :last_name
+    column :email
     column :created_at, align: :center
     actions
   end
 
   # Customize the form fields shown on the new/edit views.
   #
-  form do |thematic|
-    text_field :name
-  end
+  # form do |user|
+  #   text_field :name
+  #
+  #   row do
+  #     col { datetime_field :updated_at }
+  #     col { datetime_field :created_at }
+  #   end
+  # end
 
   # By default, all parameters passed to the update and create actions will be
   # permitted. If you do not have full trust in your users, you should explicitly
@@ -26,6 +33,6 @@ Trestle.resource(:thematics) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:thematic).permit(:name, ...)
+  #   params.require(:user).permit(:name, ...)
   # end
 end
