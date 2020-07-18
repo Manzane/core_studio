@@ -7,7 +7,6 @@ Trestle.resource(:lessons) do
   #
   table do
     column :name
-    column :price
     column :category
     column :thematic
     column :created_at, align: :center
