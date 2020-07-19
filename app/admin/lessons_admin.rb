@@ -1,6 +1,6 @@
 Trestle.resource(:lessons) do
   menu do
-    item :lessons, icon: "fa fa-heartbeat", priority: 3, group: 'Cours'
+    item :lessons, icon: "fa fa-calendar-alt", priority: 3, group: 'Planning'
   end
 
   # Customize the table columns shown on the index view.
@@ -9,6 +9,9 @@ Trestle.resource(:lessons) do
     column :name
     column :category
     column :thematic
+    column :start_lesson
+    column :end_lesson
+    column :capacity
     column :created_at, align: :center
     actions
   end
@@ -19,6 +22,9 @@ Trestle.resource(:lessons) do
     text_field :name
     select :category, Category.all
     select :thematic, Thematic.all
+    datetime_field :start_lesson
+    datetime_field :end_lesson
+    text_field :capacity
   end
 
   # By default, all parameters passed to the update and create actions will be
