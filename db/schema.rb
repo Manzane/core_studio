@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_18_094626) do
+ActiveRecord::Schema.define(version: 2020_07_21_124905) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,22 +47,13 @@ ActiveRecord::Schema.define(version: 2020_07_18_094626) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "agendas", force: :cascade do |t|
-    t.datetime "time"
-    t.integer "capacity"
-    t.bigint "lesson_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["lesson_id"], name: "index_agendas_on_lesson_id"
-  end
-
   create_table "bookings", force: :cascade do |t|
     t.integer "quantity"
     t.bigint "user_id", null: false
-    t.bigint "agenda_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["agenda_id"], name: "index_bookings_on_agenda_id"
+    t.bigint "lesson_id", null: false
+    t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
@@ -99,6 +90,9 @@ ActiveRecord::Schema.define(version: 2020_07_18_094626) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "thematic_id", null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "capacity"
     t.index ["category_id"], name: "index_lessons_on_category_id"
     t.index ["thematic_id"], name: "index_lessons_on_thematic_id"
   end
@@ -143,8 +137,7 @@ ActiveRecord::Schema.define(version: 2020_07_18_094626) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "agendas", "lessons"
-  add_foreign_key "bookings", "agendas"
+  add_foreign_key "bookings", "lessons"
   add_foreign_key "bookings", "users"
   add_foreign_key "cart_items", "orders"
   add_foreign_key "cart_items", "packages"

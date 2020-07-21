@@ -7,7 +7,7 @@ Trestle.resource(:bookings) do
   # Customize the table columns shown on the index view.
   #
   table do
-    column :agenda
+    column :lesson
     column :users
     column :quantity
     column :created_at, align: :center
@@ -17,8 +17,8 @@ Trestle.resource(:bookings) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |booking|
-    select :agenda, Agenda.all
-    select :user, User.all
+    select :lesson_id, Lesson.all
+    select :user_id, User.all
     text_field :quantity
   end
 

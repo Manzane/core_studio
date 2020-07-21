@@ -17,7 +17,7 @@ Trestle.resource(:packages) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |package|
-    select :category, Category.all
+    select :category_id, Category.all
     text_field :quantity
     text_field :price
   end
