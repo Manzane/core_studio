@@ -9,8 +9,8 @@ Trestle.resource(:lessons) do
     column :name
     column :category
     column :thematic
-    column :start_lesson
-    column :end_lesson
+    column :start_time
+    column :end_time
     column :capacity
     column :created_at, align: :center
     actions
@@ -20,10 +20,10 @@ Trestle.resource(:lessons) do
   #
   form do |lesson|
     text_field :name
-    select :category, Category.all
-    select :thematic, Thematic.all
-    datetime_field :start_lesson
-    datetime_field :end_lesson
+    select :category_id, Category.all
+    select :thematic_id, Thematic.all
+    datetime_field :start_time
+    datetime_field :end_time
     text_field :capacity
   end
 

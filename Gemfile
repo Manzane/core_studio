@@ -37,6 +37,7 @@ gem 'trestle'
 gem 'trestle-auth'
 gem 'trestle-active_storage'
 gem 'trestle-tinymce'
+gem "simple_calendar", "~> 2.0"
 
 group :development, :test do  
   gem 'pry-byebug'

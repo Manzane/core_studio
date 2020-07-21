@@ -17,8 +17,8 @@ Trestle.resource(:bookings) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |booking|
-    select :lesson, Lesson.all
-    select :user, User.all
+    select :lesson_id, Lesson.all
+    select :user_id, User.all
     text_field :quantity
   end
 

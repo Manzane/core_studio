@@ -1,0 +1,14 @@
+<h1>Planning</h1>
+
+
+<%= week_calendar events: @lessons do |date, lessons| %>
+  <%= date %>
+  <% lessons.each do |lesson| %>
+    <div>
+      <%= lesson.name %>
+      <%= lesson.start_time %>
+      <%= lesson.end_time %>
+    </div>
+  <% end %>
+<% end %>
+
