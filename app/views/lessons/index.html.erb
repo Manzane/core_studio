@@ -1,13 +1,21 @@
 <h1>Planning</h1>
 
 
-<%= week_calendar events: @lessons do |date, lessons| %>
+<%= month_calendar events: @lessons do |date, lessons| %>
   <%= date %>
   <% lessons.each do |lesson| %>
     <div>
       <%= lesson.name %>
       <%= lesson.start_time %>
       <%= lesson.end_time %>
+      <div class="">
+        <%= link_to lesson_path(lesson) do %>
+        <div class="btn">Voir plus</div>
+      <% end %>
+        <%= link_to "#" do %>
+      <div class="btn btn-book">Reserver</div>
+      <% end %>
+      </div>
     </div>
   <% end %>
 <% end %>
