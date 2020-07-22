@@ -8,7 +8,7 @@ Trestle.resource(:bookings) do
   #
   table do
     column :lesson
-    column :users
+    column :user
     column :quantity
     column :created_at, align: :center
     actions
