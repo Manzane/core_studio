@@ -14,7 +14,7 @@
         <% end %>
         <% if lesson.full? %>
           <p>Cours complet</p>
-        <% else %>
+        <% elsif lesson.one_day_before_lesson? %>
           <%= link_to new_lesson_booking_path(lesson) do %>
             <div class="btn btn-book">Réserver</div>
           <% end %>
