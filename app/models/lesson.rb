@@ -8,14 +8,24 @@ class Lesson < ApplicationRecord
 
   
   def full?
-  sum = 0
-  self.bookings.each do | booking |
-    sum += booking.quantity
+    sum = 0
+    self.bookings.each do | booking |
+      sum += booking.quantity
+    end
+    if sum < self.capacity
+      return false
+    else
+      return true
+    end
   end
-  if sum < self.capacity
-    return false
-  else
-    return true
+
+  def available_quantity
+    capacity = self.capacity
+    booked = 0
+    self.bookings.each do | booking |
+      booked += booking.quantity
+    end
+    return capacity - booked
   end
-end
+
 end

@@ -2,7 +2,7 @@
 <div id="datepickr-form">
   <%= simple_form_for [@lesson, @booking] do |f| %>
     <div>
-      <%= f.input :quantity, label: "nombres de places" %>
+      <%= f.select :quantity, options_for_select(0..@lesson.available_quantity), label: "nombres de places" %>
     </div>
     <%= f.submit "Réserver" %>
   <% end %>
