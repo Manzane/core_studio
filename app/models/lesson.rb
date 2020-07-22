@@ -27,5 +27,13 @@ class Lesson < ApplicationRecord
     end
     return capacity - booked
   end
+  def one_day_before_lesson?
+    if ((self.start_time -  DateTime.now).to_i / 86400) >= 1
+      # raise
+    return true
+    else
+      return false
+    end  
+  end
 
 end

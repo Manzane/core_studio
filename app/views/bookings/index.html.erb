@@ -8,8 +8,12 @@
             <p>Quantité réservée: <%= booking.quantity %></p>
         </div>
         <div>
-            <%= link_to booking_path(booking), method: :delete, data: { confirm: "Etes-vous certain de vouloir annuler cette réservation?" } do %>
-                <p>Annuler cette réservation</p>
+            <% if booking.lesson.one_day_before_lesson? %>
+                <%= link_to booking_path(booking), method: :delete, data: { confirm: "Etes-vous certain de vouloir annuler cette réservation?" } do %>
+                    <p>Annuler cette réservation</p>
+                <% end %>
+            <% else %>
+                <p>Trop tard pour annuler cette réservation</p>
             <% end %>
         </div>
     <% end %>
