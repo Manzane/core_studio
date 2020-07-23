@@ -1,6 +1,13 @@
+Administrator.destroy_all
+User.destroy_all
+Credit.destroy_all
+Lesson.destroy_all
 Category.destroy_all
 Thematic.destroy_all
-Lesson.destroy_all
+
+
+Administrator.create(email: "test@test.com", password: "azerty", first_name:"test", last_name:"admin")
+test_user = User.create(email: "test@test.com", password: "azerty", first_name:"test", last_name:"admin")
 
 yoga = Thematic.create!(name: "Yoga")
 pilates = Thematic.create!(name: "Pilates")
@@ -11,8 +18,11 @@ cours = Category.create!(name: "Cours")
 stage = Category.create!(name: "Stage")
 coaching = Category.create!(name: "Coaching")
 
-Lesson.create!(name: "Cours de Yoga", price:1500, category: cours, thematic: yoga)
-Lesson.create!(name: "Stage automnale", price:2500, category: cours, thematic: yoga)
-Lesson.create!(name: "Coaching privé", price:2500, category: coaching, thematic: fitness)
-Lesson.create!(name: "Cours de Port de bras", price:1500, category: stage, thematic: port)
-Lesson.create!(name: "Stage de Pilates", price:2500, category: stage, thematic: pilates)
+Credit.create(quantity: 10, user: test_user, category: cours)
+Credit.create(quantity: 10, user: test_user, category: stage)
+
+Lesson.create!(name: "Cours de Yoga", capacity: 10, category: cours, thematic: yoga, start_time: DateTime.new(2020,7,24,15), end_time: DateTime.new(2020,7,24,15) )
+Lesson.create!(name: "Stage automnale", capacity: 10, category: cours, thematic: yoga, start_time: DateTime.new(2020,7,25,15), end_time: DateTime.new(2020,7,25,15) )
+Lesson.create!(name: "Coaching privé", capacity: 10, category: coaching, thematic: fitness, start_time: DateTime.new(2020,7,26,15), end_time: DateTime.new(2020,7,26,15) )
+Lesson.create!(name: "Cours de Port de bras", capacity: 1, category: stage, thematic: port, start_time: DateTime.new(2020,7,27,15), end_time: DateTime.new(2020,7,27,15) )
+Lesson.create!(name: "Stage de Pilates", capacity: 10, category: stage, thematic: pilates, start_time: DateTime.new(2020,7,28,15), end_time: DateTime.new(2020,7,28,15) )
