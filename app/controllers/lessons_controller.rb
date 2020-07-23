@@ -5,6 +5,7 @@ class LessonsController < ApplicationController
     end
 
     def show
+        # raise
     end
 
     private

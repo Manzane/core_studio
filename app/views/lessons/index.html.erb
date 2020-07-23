@@ -10,11 +10,15 @@
       <%= lesson.end_time %>
       <div class="">
         <%= link_to lesson_path(lesson) do %>
-        <div class="btn">Voir plus</div>
-      <% end %>
-        <%= link_to "#" do %>
-      <div class="btn btn-book">Reserver</div>
-      <% end %>
+          <div class="btn">Voir plus</div>
+        <% end %>
+        <% if lesson.full? %>
+          <p>Cours complet</p>
+        <% elsif lesson.one_day_before_lesson? %>
+          <%= link_to new_lesson_booking_path(lesson) do %>
+            <div class="btn btn-book">Réserver</div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   <% end %>

@@ -1,0 +1,7 @@
+<h1>Vos crédits</h1>
+<div class="credits">
+    <p>Vous possédez: </p>
+    <% @credits.each do |credit| %>
+    <p><%= credit.quantity %> Crédit <%= credit.category.name %></p>
+<% end %>
+</div>

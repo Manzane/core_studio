@@ -10,3 +10,10 @@
 <div class="capacity">
     Nombre de places maximales: <%= @lesson.capacity %>
 </div>
+<% if @lesson.full? %>
+    <p>Cours complet</p>
+<% else %>
+    <%= link_to new_lesson_booking_path(@lesson) do %>
+        <div class="btn btn-book">Réserver</div>
+    <% end %>
+<% end %>
