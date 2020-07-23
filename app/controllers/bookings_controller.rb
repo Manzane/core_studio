@@ -10,6 +10,9 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @lesson = Lesson.find(params[:lesson_id])
+    @credits = current_user.credits.find_by(category_id: @lesson.category_id).quantity
+    # raise
+    
   end
 
   def create
