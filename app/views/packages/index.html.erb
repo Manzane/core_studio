@@ -1,2 +1,14 @@
-<h1>Packages#index</h1>
-<p>Find me in app/views/packages/index.html.erb</p>
+<h1>Packages de crédits</h1>
+<div>
+    <% @packages.each do |package| %>
+        <div>
+            <p>Crédits pour les <%= package.category.name %></p>
+            <p>Quantité: <%= package.quantity %></p>
+            <p>Prix: <%= package.price %></p>
+            <%= link_to '#' do %>
+                <div class="btn btn-cart">Ajouter au panier</div>
+            <% end %>
+        </div>
+    <% end %>
+</div>  
+
