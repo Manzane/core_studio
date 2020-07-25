@@ -10,7 +10,12 @@ class BookingsController < ApplicationController
   def new
     @booking = Booking.new
     @lesson = Lesson.find(params[:lesson_id])
-    @credits = current_user.credits.find_by(category_id: @lesson.category_id).quantity
+    credits = current_user.credits.find_by(category_id: @lesson.category_id)
+    if credits
+      @credits = credits.quantity
+    else
+      redirect_to packages_path, notice: "Il vous faut des crédits pour réserver une séance"
+    end
     # raise
     
   end
@@ -27,14 +32,16 @@ class BookingsController < ApplicationController
           redirect_to bookings_path, notice: "Réservation effectuée"
         # lesson_booking_path(lesson_id, @booking), notice: "Réservation effectuées"
         else
-          render :new, notice: "Réservation non effectuée, due à un problème technique, contactez l'administrateur du site"
+          flash.now[:alert] = "Réservation non effectuée, dûe à un problème technique, contactez l'administrateur du site"
+          render :new
         end 
       else
         @booking.errors.full_messages
           render :new
       end
     else
-      render :new, notice: "Vous n'avez pas assez de crédits pour réserver"
+      flash.now[:alert] = "Vous avez demandé une quantité supérieure au nombre de vos crédits"
+      render :new
     end
   end
 
