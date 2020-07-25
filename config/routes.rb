@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'carts/show'
-  get 'cart_items/create'
-  get 'cart_items/destroy'
   devise_for :users
   root to: 'lessons#index'
   resources :lessons, only: [:index, :show] do

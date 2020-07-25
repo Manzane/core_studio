@@ -3,6 +3,9 @@
     <div>
         <%= item.package.quantity %> Crédits
         <%= item.package.category.name %>
+        <%= link_to cart_cart_item_path(item.cart_id, item), method: :delete, data: { confirm: "Etes-vous certain ?" } do %>
+      <p><%= 'Supprimer du panier' %></p>
+    <% end %>
     </div>
     
 <% end %>

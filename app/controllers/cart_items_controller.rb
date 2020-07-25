@@ -16,12 +16,12 @@ class CartItemsController < ApplicationController
 
   def destroy
     @cart_item.destroy
-    redirect_to cart_items_path, notice: t('.deleted')
+    redirect_to cart_path(current_user.carts.first.id), notice: "Supprimé !"
   end
   private
 
   def set_cart_item
-    @cart_item = current_user.cart_items.find(params[:id])
+    @cart_item = CartItem.find(params[:id])
   end
 
   def cart_item_params
