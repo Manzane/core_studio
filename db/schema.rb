@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_21_124905) do
+ActiveRecord::Schema.define(version: 2020_07_25_120911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,11 +59,19 @@ ActiveRecord::Schema.define(version: 2020_07_21_124905) do
 
   create_table "cart_items", force: :cascade do |t|
     t.bigint "package_id", null: false
-    t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_id"], name: "index_cart_items_on_order_id"
+    t.bigint "cart_id"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
     t.index ["package_id"], name: "index_cart_items_on_package_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.integer "amount"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -104,6 +112,8 @@ ActiveRecord::Schema.define(version: 2020_07_21_124905) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cart_id", null: false
+    t.index ["cart_id"], name: "index_orders_on_cart_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -139,12 +149,14 @@ ActiveRecord::Schema.define(version: 2020_07_21_124905) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "bookings", "lessons"
   add_foreign_key "bookings", "users"
-  add_foreign_key "cart_items", "orders"
+  add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "packages"
+  add_foreign_key "carts", "users"
   add_foreign_key "credits", "categories"
   add_foreign_key "credits", "users"
   add_foreign_key "lessons", "categories"
   add_foreign_key "lessons", "thematics"
+  add_foreign_key "orders", "carts"
   add_foreign_key "orders", "users"
   add_foreign_key "packages", "categories"
 end

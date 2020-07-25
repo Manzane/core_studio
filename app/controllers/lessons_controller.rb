@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+    skip_before_action :authenticate_user!
     before_action :set_lesson, only: [:show]
     def index
         @lessons = Lesson.all

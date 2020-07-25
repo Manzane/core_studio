@@ -1,0 +1,8 @@
+<h1>Panier</h1>
+<% @cart.cart_items.each do |item| %>
+    <div>
+        <%= item.package.quantity %> Crédits
+        <%= item.package.category.name %>
+    </div>
+    
+<% end %>

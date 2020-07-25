@@ -5,8 +5,9 @@
             <p>Crédits pour les <%= package.category.name %></p>
             <p>Quantité: <%= package.quantity %></p>
             <p>Prix: <%= package.price %></p>
-            <%= link_to '#' do %>
-                <div class="btn btn-cart">Ajouter au panier</div>
+            <!-- DEBUG SI USER NON LOGUÉ-->
+            <% if current_user %>
+            <%= button_to 'Ajouter au panier', cart_cart_items_path(current_user.carts.first, package_id: package.id)%>
             <% end %>
         </div>
     <% end %>
