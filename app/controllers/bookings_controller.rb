@@ -20,12 +20,21 @@ class BookingsController < ApplicationController
     @lesson = Lesson.find(params[:lesson_id])
     @booking.lesson_id = @lesson.id
     @booking.user_id = current_user.id
-    if @booking.save
-      redirect_to bookings_path, notice: "Réservation effectuée"
-      # lesson_booking_path(lesson_id, @booking), notice: "Réservation effectuées"
+    credits_updater = CreditsUpdater.new(booking_params, current_user, @lesson)
+    if credits_updater.check_credits
+      if @booking.save
+        if credits_updater.decrease
+          redirect_to bookings_path, notice: "Réservation effectuée"
+        # lesson_booking_path(lesson_id, @booking), notice: "Réservation effectuées"
+        else
+          render :new, notice: "Réservation non effectuée, due à un problème technique, contactez l'administrateur du site"
+        end 
+      else
+        @booking.errors.full_messages
+          render :new
+      end
     else
-      @booking.errors.full_messages
-        render :new
+      render :new, notice: "Vous n'avez pas assez de crédits pour réserver"
     end
   end
 
