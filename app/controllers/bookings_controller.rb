@@ -49,7 +49,7 @@ class BookingsController < ApplicationController
     credits_updater = CreditsUpdater.new(@booking, current_user, @lesson)
     credits_updater.increase
     @booking.destroy
-    redirect_to bookings_path, notice: "Réservation annulée"
+    redirect_to bookings_path, notice: "Réservation annulée et compte recrédité !"
   end
 
 
