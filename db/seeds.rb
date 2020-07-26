@@ -28,6 +28,9 @@ Lesson.create!(name: "Cours de Port de bras", capacity: 1, category: stage, them
 Lesson.create!(name: "Stage de Pilates", capacity: 10, category: stage, thematic: pilates, start_time: DateTime.new(2020,7,28,15), end_time: DateTime.new(2020,7,28,17))
 
 
+
+
+
 Package.create!(quantity: 1, price: 1500, category: cours)
 Package.create!(quantity: 10, price: 12500, category: cours)
 Package.create!(quantity: 20, price: 22500, category: cours)
@@ -45,3 +48,5 @@ Package.create!(quantity: 10, price: 12500, category: coaching)
 Package.create!(quantity: 20, price: 22500, category: coaching)
 Package.create!(quantity: 30, price: 32500, category: coaching)
 Package.create!(quantity: 50, price: 50000, category: coaching)
+
+# Order.create!(date: Time.now, amount: 1500, state: "en cours", user: test_user, cart: cart.first)

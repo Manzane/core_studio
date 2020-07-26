@@ -17,7 +17,6 @@ class BookingsController < ApplicationController
       redirect_to packages_path, notice: "Il vous faut des crédits pour réserver une séance"
     end
     # raise
-    
   end
 
   def create

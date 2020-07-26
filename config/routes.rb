@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+  get 'orders/show'
+  get 'orders/new'
+  get 'orders/create'
   devise_for :users
   root to: 'lessons#index'
   resources :lessons, only: [:index, :show] do

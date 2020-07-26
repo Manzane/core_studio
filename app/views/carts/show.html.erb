@@ -6,6 +6,9 @@
         <%= link_to cart_cart_item_path(item.cart_id, item), method: :delete, data: { confirm: "Etes-vous certain ?" } do %>
       <p><%= 'Supprimer du panier' %></p>
     <% end %>
-    </div>
-    
+    </div>   
 <% end %>
+<!-- <%= link_to new_order_path do %>
+    <div class="btn btn-cart">Commander</div>
+<% end %> -->
+<%= button_to 'Commander', orders_path()%>
