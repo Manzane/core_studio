@@ -1,8 +1,10 @@
 class CreditsUpdater
-    def initialize(params, user, lesson)
+    def initialize(params, user, options={})
       @params = params
       @user = user
-      @lesson = lesson
+      if options.has_key?(:lesson)
+        @lesson = options[:lesson]
+      end
     end
     attr_accessor :credits
 
@@ -32,6 +34,7 @@ class CreditsUpdater
         category = Category.find(@lesson.category_id)
         credit = @user.credits.find_by(category_id: category.id)
         credit.quantity -= @params[:quantity].to_i
+        # raise
         if credit.save!
             return true
         else
@@ -40,5 +43,8 @@ class CreditsUpdater
     end
 
     def order
+        raise
+        # // params -> cart -> cart.packages - package.category_id, cart.packages - package.quantity
+        
     end 
   end

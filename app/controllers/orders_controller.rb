@@ -21,10 +21,11 @@ class OrdersController < ApplicationController
     cart = Cart.first
     user = current_user
     @order = Order.create!(date: Time.now, amount: 1500, state: "en cours", user: user, cart: cart)
-    credits_updater = CreditsUpdater.new(params, current_user, @lesson)
+    
     # // params -> cart -> cart.packages - package.category_id, cart.packages - package.quantity
     
     if @order.save
+      credits_updater = CreditsUpdater.new(params, current_user)
       # // category, et la quantité + user//
       credits_updater.order
       redirect_to orders_path, notice: "Commande effectuée et compte crédité"
