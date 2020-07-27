@@ -1,0 +1,19 @@
+<h1>Panier</h1>
+<% @cart.cart_items.each do |item| %>
+    <div>
+        <%= item.package.quantity %> Crédits
+        <%= item.package.category.name %>
+        <%= link_to cart_cart_item_path(item.cart_id, item), method: :delete, data: { confirm: "Etes-vous certain ?" } do %>
+      <p><%= 'Supprimer du panier' %></p>
+    <% end %>
+    </div>   
+<% end %>
+<!-- <%= link_to new_order_path do %>
+    <div class="btn btn-cart">Commander</div>
+<% end %> -->
+<%= form_tag orders_path do %>
+    <% @cart.cart_items.each_with_index do |item, index| %>
+  <%= hidden_field_tag "package_ids[]", item.package.id %>
+  <% end %>
+  <%= submit_tag 'Commander', class: 'btn btn-primary' %>
+<% end %>

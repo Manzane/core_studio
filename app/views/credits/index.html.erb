@@ -4,4 +4,7 @@
     <% @credits.each do |credit| %>
     <p><%= credit.quantity %> Crédit <%= credit.category.name %></p>
 <% end %>
+<%= link_to packages_path do %>
+    <div class="btn btn-cart">Acheter des crédits</div>
+<% end %>
 </div>
