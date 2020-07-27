@@ -18,12 +18,7 @@ class OrdersController < ApplicationController
   end
 
   def create
-    cart = Cart.first
-    user = current_user
-    @order = Order.create!(date: Time.now, amount: 1500, state: "en cours", user: user, cart: cart)
-    
-    # // params -> cart -> cart.packages - package.category_id, cart.packages - package.quantity
-    
+    @order = Order.create!(date: Time.now, amount: 1500, state: "en cours", user: current_user, cart: Cart.first)     
     if @order.save
       credits_updater = CreditsUpdater.new(params, current_user)
       # // category, et la quantité + user//

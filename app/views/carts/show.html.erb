@@ -11,4 +11,9 @@
 <!-- <%= link_to new_order_path do %>
     <div class="btn btn-cart">Commander</div>
 <% end %> -->
-<%= button_to 'Commander', orders_path()%>
+<%= form_tag orders_path do %>
+    <% @cart.cart_items.each_with_index do |item, index| %>
+  <%= hidden_field_tag "package_ids[]", item.package.id %>
+  <% end %>
+  <%= submit_tag 'Commander', class: 'btn btn-primary' %>
+<% end %>

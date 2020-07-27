@@ -43,8 +43,25 @@ class CreditsUpdater
     end
 
     def order
-        raise
-        # // params -> cart -> cart.packages - package.category_id, cart.packages - package.quantity
-        
+        # raise
+        @params[:package_ids].each do |item |
+            # raise
+            package = Package.find(item)
+            category = Category.find(package.category_id)
+            quantity = package.quantity
+            # raise
+            if @user.credits.find_by(category: category)
+                credit = @user.credits.find_by(category_id: category.id)
+                credit.quantity += quantity
+                if !credit.save!
+                    return false
+                end
+            else
+                credit = Credit.create!(user: @user, category: category, quantity: quantity)
+                if !credit.save!
+                    return false
+                end
+            end
+        end
     end 
   end
