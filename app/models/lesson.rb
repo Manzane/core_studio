@@ -1,11 +1,10 @@
 class Lesson < ApplicationRecord
   serialize :recurring, Hash
+  enum frequency_day: { monday: 0, tuesday: 1, wednesday: 2, thursday: 3, friday: 4, saturday: 5, sunday: 6 }
   belongs_to :category
   belongs_to :thematic
   has_many :bookings, dependent: :destroy
   validates :name, :start_time, presence: true
-
-  # scope :with_bookings, -> (bookingId) {where("self.bookings == ?"), bookingId}
 
   
   def full?
@@ -81,15 +80,24 @@ class Lesson < ApplicationRecord
   end
 
 
-  def create_recurring_events(args = {})
+  def create_recurring_events(day, end_date, start_time)
   #   if recurring.empty?
   #     [self]
   #   else
     # start_date = Time.now
-    schedule(args[:day]).occurrences_between(args[:start_time], args[:end_date]).each do |date|
-      Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date.change({ hour: args[:hour], min: args[:minute], sec: 0 }), duration: duration)
+    schedule(day).occurrences_between(start_time + 1, end_date).each do |date|
+      Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date, duration: duration)
     end
   end
+  # def create_recurring_events(args = {})
+  # #   if recurring.empty?
+  # #     [self]
+  # #   else
+  #   # start_date = Time.now
+  #   schedule(args[:day]).occurrences_between(args[:start_time], args[:end_date]).each do |date|
+  #     Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date.change({ hour: args[:hour], min: args[:minute], sec: 0 }), duration: duration)
+  #   end
+  # end
 
   # def schedule(value, options={})
   #   schedule = IceCube::Schedule.new
