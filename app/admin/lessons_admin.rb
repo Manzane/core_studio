@@ -23,17 +23,20 @@ Trestle.resource(:lessons) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |lesson|
+    tab :lessons do
     text_field :name
     select :category_id, Category.all
     select :thematic_id, Thematic.all
     datetime_field :start_time
     text_field :duration
     text_field :capacity
+    end
+    tab :occurences do
     select :frequency_day, Lesson.frequency_days.keys
     datetime_field :end_date
     # :recurring do |key|
     # end
-     
+    end
     
   end
 
