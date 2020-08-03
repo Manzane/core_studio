@@ -16,7 +16,7 @@ Trestle.resource(:lessons) do
     column :created_at, align: :center
     actions
     actions do |toolbar, instance, admin|
-      toolbar.link 'Créer une récurrence', instance, action: :occurrence, method: :post, style: :primary, icon: "fa fa-paper-plane"
+      toolbar.link 'Créer une récurrence', instance, action: :occurrence, method: :post, style: :primary, icon: "fa fa-calendar-alt"
     end
   end
 
