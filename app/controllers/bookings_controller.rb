@@ -45,8 +45,10 @@ class BookingsController < ApplicationController
 
   def destroy
     @lesson = @booking.lesson
-    credits_updater = CreditsUpdater.new(@booking, current_user, {lesson: @lesson})
-    credits_updater.increase
+    if @lesson.one_day_before_lesson?
+      credits_updater = CreditsUpdater.new(@booking, current_user, {lesson: @lesson})
+      credits_updater.increase
+    end
     @booking.destroy
     redirect_to bookings_path, notice: "Réservation annulée et compte recrédité !"
   end
