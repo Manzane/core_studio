@@ -13,7 +13,9 @@
 <% if @lesson.full? %>
     <p>Cours complet</p>
 <% else %>
-    <%= link_to new_lesson_booking_path(@lesson) do %>
-        <div class="btn btn-book">Réserver</div>
+    <% if !@lesson.past_lesson? %>
+        <%= link_to new_lesson_booking_path(@lesson) do %>
+            <div class="btn btn-book">Réserver</div>
+        <% end %>
     <% end %>
 <% end %>

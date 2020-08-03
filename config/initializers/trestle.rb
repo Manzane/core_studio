@@ -119,7 +119,6 @@ Trestle.configure do |config|
   # end
   #
   # config.form_field :custom, CustomFormField
-  config.form_field :occurrence, OccurrenceField
 
   # == Debugging Options
   #
