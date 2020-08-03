@@ -21,15 +21,17 @@ coaching = Category.create!(name: "Coaching")
 Credit.create(quantity: 10, user: test_user, category: cours)
 Credit.create(quantity: 10, user: test_user, category: stage)
 
-Lesson.create!(name: "Cours de Yoga", capacity: 10, category: cours, thematic: yoga, start_time: DateTime.new(2020,7,24,15), end_time: DateTime.new(2020,7,24,17))
-Lesson.create!(name: "Stage automnale", capacity: 10, category: cours, thematic: yoga, start_time: DateTime.new(2020,7,25,15), end_time: DateTime.new(2020,7,25,17))
-Lesson.create!(name: "Coaching privé", capacity: 10, category: coaching, thematic: fitness, start_time: DateTime.new(2020,7,30,15), end_time: DateTime.new(2020,7,30,17))
-Lesson.create!(name: "Cours de Port de bras", capacity: 1, category: stage, thematic: port, start_time: DateTime.new(2020,7,27,15), end_time: DateTime.new(2020,7,27,17))
-Lesson.create!(name: "Stage de Pilates", capacity: 10, category: stage, thematic: pilates, start_time: DateTime.new(2020,7,28,15), end_time: DateTime.new(2020,7,28,17))
+Lesson.create!(name: "Cours de Yoga", capacity: 10, category: cours, thematic: yoga, start_time: DateTime.new(2020,7,24,15), duration: 1, capacity: 8)
+Lesson.create!(name: "Stage automnale", capacity: 10, category: cours, thematic: yoga, start_time: DateTime.new(2020,7,25,15), duration: 1, capacity: 8)
+Lesson.create!(name: "Coaching privé", capacity: 10, category: coaching, thematic: fitness, start_time: DateTime.new(2020,7,30,15), duration: 1, capacity: 8)
+Lesson.create!(name: "Cours de Port de bras", capacity: 1, category: stage, thematic: port, start_time: DateTime.new(2020,7,27,15), duration: 1, capacity: 8)
+Lesson.create!(name: "Stage de Pilates", capacity: 10, category: Category.first, thematic: Thematic.first, start_time: DateTime.new(2020,7,30,15), duration: 1, capacity: 8)
 
-
-
-
+Lesson.create!(name: "Stage Pilates", category: Category.find(8), thematic: Thematic.find(10), start_time: DateTime.new(2020,8,1,10), duration: 2, capacity: 10)
+Lesson.create!(name: "Cours de yoga", category: Category.first, thematic: Thematic.first, start_time: DateTime.new(2020,8,5,17), duration: 1, capacity: 10)
+Lesson.create!(name: "Coaching privé", category: Category.last, thematic: Thematic.last, start_time: DateTime.new(2020,8,5,10), duration: 1, capacity: 1)
+Lesson.last.create_recurring_events({day: 'monday', start_time: Time.now, end_date: Time.new(2020,9,31), hour: 17, minute: 0})
+Lesson.first.create_recurring_events({day: 'saturday', start_time: Time.now, end_date: Time.new(2020,9,31), hour: 10, minute: 0})
 
 Package.create!(quantity: 1, price: 1500, category: cours)
 Package.create!(quantity: 10, price: 12500, category: cours)
