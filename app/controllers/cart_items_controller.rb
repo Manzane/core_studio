@@ -3,11 +3,11 @@ class CartItemsController < ApplicationController
 
   def create
     @cart_item = CartItem.new
-    @cart_item.cart_id = current_user.carts.first.id
+    @cart_item.cart_id = current_user.cart.id
     @cart_item.package_id = (params[:package_id])
     # raise
     if @cart_item.save
-      redirect_to cart_path(current_user.carts.first.id), notice: "Ajouté au panier !"
+      redirect_to cart_path(current_user.cart.id), notice: "Ajouté au panier !"
     else
       @cart_item.errors.full_messages
         render :new
@@ -16,7 +16,7 @@ class CartItemsController < ApplicationController
 
   def destroy
     @cart_item.destroy
-    redirect_to cart_path(current_user.carts.first.id), notice: "Supprimé !"
+    redirect_to cart_path(current_user.cart.id), notice: "Supprimé !"
   end
   private
 
