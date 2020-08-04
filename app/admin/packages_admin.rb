@@ -18,8 +18,8 @@ Trestle.resource(:packages) do
   #
   form do |package|
     select :category_id, Category.all
-    text_field :quantity
-    text_field :price
+    number_field :quantity
+    number_field :price
   end
 
   # By default, all parameters passed to the update and create actions will be
