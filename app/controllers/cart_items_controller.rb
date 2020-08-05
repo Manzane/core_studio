@@ -1,13 +1,19 @@
 class CartItemsController < ApplicationController
   before_action :set_cart_item, only: [:destroy]
+  before_action :set_cart
 
   def create
     @cart_item = CartItem.new
-    @cart_item.cart_id = current_user.cart.id
-    @cart_item.package_id = (params[:package_id])
+    @cart_item.cart_id = @cart.id
+    package = Package.find(params[:package_id])
+    @cart_item.package_id = package.id
+    
     # raise
     if @cart_item.save
-      redirect_to cart_path(current_user.cart.id), notice: "Ajouté au panier !"
+      new_amount = @cart.amount + package.price
+      @cart.update!(amount: new_amount)
+      # raise
+      redirect_to cart_path(@cart), notice: "Ajouté au panier !"
     else
       @cart_item.errors.full_messages
         render :new
@@ -15,8 +21,13 @@ class CartItemsController < ApplicationController
   end
 
   def destroy
+    price = @cart_item.package.price
+    new_amount = @cart.amount - price
+    # raise
+    @cart.update!(amount: new_amount)
+    # raise
     @cart_item.destroy
-    redirect_to cart_path(current_user.cart.id), notice: "Supprimé !"
+    redirect_to cart_path(@cart), notice: "Supprimé !"
   end
   private
 
@@ -26,6 +37,10 @@ class CartItemsController < ApplicationController
 
   def cart_item_params
     params.require(:cart_item).permit(:package_id, :cart_id)
+  end
+
+  def set_cart
+    @cart = Cart.find(current_user.cart.id)
   end
 
 
