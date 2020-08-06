@@ -13,6 +13,7 @@ Montant total: <%= humanized_money_with_symbol(@cart.amount) %>
     <div class="btn btn-cart">Commander</div>
 <% end %> -->
 <%= form_tag orders_path do %>
+    <%= hidden_field_tag 'cart_id', @cart.id %>
     <% @cart.cart_items.each_with_index do |item, index| %>
   <%= hidden_field_tag "package_ids[]", item.package.id %>
   <% end %>

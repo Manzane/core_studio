@@ -1,2 +1,16 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="container">
+  <div class="row py-4">
+    <div class="col-md-3"></div>
+    <div class="col">
+      <h1>Commande #<%= @order.id %> <small><span class="badge badge-primary"><%= @order.state %></span></small></h1>
+      <ul class="list-unstyled">
+        <li><strong>Effecutée le</strong> <%= @order.created_at.to_date %></li>
+        <% @order.cart.packages.each do |package| %>
+          <li><%= package.quantity%> Crédits <%= package.category.name %></li>
+        <% end %>
+        <li><strong>TOTAL</strong> <%= humanized_money_with_symbol @order.amount %></li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
