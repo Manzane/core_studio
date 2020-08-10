@@ -4,10 +4,10 @@
         <div>
             <p>Crédits pour les <%= package.category.name %></p>
             <p>Quantité: <%= package.quantity %></p>
-            <p>Prix: <%= package.price %></p>
+            <p>Prix: <%= humanized_money_with_symbol(package.price) %></p>
             <!-- DEBUG SI USER NON LOGUÉ-->
             <% if current_user %>
-            <%= button_to 'Ajouter au panier', cart_cart_items_path(current_user.carts.first, package_id: package.id)%>
+            <%= button_to 'Ajouter au panier', cart_cart_items_path(current_user.cart, package_id: package.id)%>
             <% end %>
         </div>
     <% end %>

@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'orders/index'
-  get 'orders/show'
-  get 'orders/new'
-  get 'orders/create'
+  mount StripeEvent::Engine, at: '/stripe-webhooks'
   devise_for :users
   root to: 'lessons#index'
   resources :lessons, only: [:index, :show] do
@@ -14,7 +11,9 @@ Rails.application.routes.draw do
   as :users do
     resources :bookings, only: [:index, :show, :destroy]
     resources :credits, only: [:index]
-    resources :orders
+    resources :orders do
+      resources :payments, only: :new
+    end
     resources :carts do
       resources :cart_items
     end

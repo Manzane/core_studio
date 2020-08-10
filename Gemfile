@@ -39,6 +39,9 @@ gem 'trestle-active_storage'
 gem 'trestle-tinymce'
 gem "simple_calendar", "~> 2.0"
 gem 'ice_cube', '~> 0.16.3'
+gem 'money-rails', '~>1.12'
+gem 'stripe'
+gem 'stripe_event'
 
 group :development, :test do  
   gem 'pry-byebug'

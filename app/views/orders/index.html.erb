@@ -1,2 +1,10 @@
-<h1>Orders#index</h1>
-<p>Find me in app/views/orders/index.html.erb</p>
+<h1>Liste des commandes</h1>
+<% @orders.each do |order| %>
+    <p>Commande n°<%= order.id %>, effectuée le <%= order.created_at %></p>
+    <p>Pour un montant de <%= humanized_money_with_symbol order.amount %></p>
+    <p>Statut: <%= order.state %></p>
+    <p>Détails:</p>
+    <% order.cart.packages.each do |package| %>
+        <p><%= package.quantity%> Crédits <%= package.category.name %></p>
+    <% end %>
+<% end %>
