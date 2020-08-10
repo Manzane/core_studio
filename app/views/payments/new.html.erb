@@ -3,7 +3,7 @@
     <div class="col-md-3"></div>
     <div class="col">
       <h1>Récapitulatif de Commande</h1>
-      <p>Commande <strong><%= @order.id %></strong> pour <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
+      <p>Commande N°<strong><%= @order.id %></strong> pour <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
       <ul>
       <% @order.cart.packages.each do |package| %>
       <li><%= package.quantity%> Crédits <%= package.category.name %></li>
