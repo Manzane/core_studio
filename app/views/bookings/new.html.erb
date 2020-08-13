@@ -5,7 +5,7 @@
     <div>
       <%= f.select :quantity, options_for_select(0..@lesson.available_quantity), label: "Nombre de places réservables" %>
     </div>
-    <%= f.submit "Réserver" %>
+    <%= f.submit "Réserver", class: 'btn btn-primary' %>
   <% end %>
 </div>
 <div>

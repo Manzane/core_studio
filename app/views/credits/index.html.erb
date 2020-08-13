@@ -2,9 +2,9 @@
 <div class="credits">
     <p>Vous possédez: </p>
     <% @credits.each do |credit| %>
-    <p><%= credit.quantity %> Crédit <%= credit.category.name %></p>
-<% end %>
-<%= link_to packages_path do %>
-    <div class="btn btn-cart">Acheter des crédits</div>
-<% end %>
+        <p><%= credit.quantity %> Crédit <%= credit.category.name %></p>
+    <% end %>
+    <%= link_to packages_path do %>
+        <button class="btn btn-primary">Acheter des crédits</button>
+    <% end %>
 </div>

@@ -10,11 +10,11 @@
         <div>
             <% if booking.lesson.one_day_before_lesson? %>
                 <%= link_to booking_path(booking), method: :delete, data: { confirm: "Etes-vous certain de vouloir annuler cette réservation?" } do %>
-                    <p>Annuler cette réservation et recréditer mon compte</p>
+                <button class="btn btn-primary">Annuler cette réservation et recréditer mon compte</button>
                 <% end %>
             <% else %>
                 <%= link_to booking_path(booking), method: :delete, data: { confirm: "Etes-vous certain de vouloir annuler cette réservation? Les crédits engagés seront perdus." } do %>
-                    <p>Annuler cette réservation, mais perdre mes crédits</p>
+                <button class="btn btn-primary">Annuler cette réservation, mais perdre mes crédits</button>
                 <% end %>
             <% end %>
         </div>

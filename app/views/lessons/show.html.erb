@@ -15,7 +15,7 @@
 <% else %>
     <% if !@lesson.past_lesson? %>
         <%= link_to new_lesson_booking_path(@lesson) do %>
-            <div class="btn btn-book">Réserver</div>
+            <button class="btn btn-primary">Réserver</button>
         <% end %>
     <% end %>
 <% end %>
