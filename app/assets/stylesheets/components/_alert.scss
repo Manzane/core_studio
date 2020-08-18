@@ -2,5 +2,23 @@
   position: fixed;
   bottom: 16px;
   right: 16px;
+  background: white;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  border-radius: 4px;
   z-index: 1000;
+}
+
+.alert-success {
+  border: 2px solid #A9D49B;
+}
+.alert-info {
+  border: 2px solid #A9D49B;
+}
+
+.alert-warning {
+  border: 2px solid #FFC65A;
+}
+
+.alert-danger {
+  border: 2px solid #E1515F;
 }

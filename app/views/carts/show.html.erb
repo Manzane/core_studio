@@ -1,30 +1,40 @@
 <h1>Panier</h1>
-<div class="d-flex flex-row">
-  <div class= "w-75"> 
-    <% @cart.cart_items.each do |item| %>
-      <div class="card w-75">
-        <div class="card-body">
-          <span class="card-title"><%= item.package.quantity %> Crédits - <%= item.package.category.name %></span>
-          <span class="card-text"><%= item.package.price %> €</span>  
-              <%= link_to cart_cart_item_path(item.cart_id, item), method: :delete, data: { confirm: "Etes-vous certain ?" } do %>
-            <button class="btn btn-primary"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>
-          <% end %>
-        </div>
-      </div>  
-    <% end %>
-    </div>
-    <div class="w-25 text-center">
-    <p class="pb-5"><strong>Montant total: <%= humanized_money_with_symbol(@cart.amount) %></strong></p>
-    <!-- <%= link_to new_order_path do %>
-        <div class="btn btn-cart">Commander</div>
-    <% end %> -->
-    <%= form_tag orders_path do %>
-        <%= hidden_field_tag 'cart_id', @cart.id %>
-        <% @cart.cart_items.each_with_index do |item, index| %>
-      <%= hidden_field_tag "package_ids[]", item.package.id %>
-      <% end %>
-      <%= submit_tag 'Commander', class: 'btn btn-primary' %>
-    <% end %>
+<% if @cart.cart_items.empty? %>
+  <div>
+    Panier vide !
   </div>
-</div>
+<% else %>
+  <div>
+    <div>
+        <% @cart.cart_items.each do |item| %>
+          <div class="card w-100">
+            <div class="card-body d-flex justify-content-between">
+              <div>
+                <span class="card-title"><%= item.package.quantity %> Crédits - <%= item.package.category.name %></span>
+                <span class="card-text"><%= item.package.price %> €</span>  
+              </div>
+              <div>
+                <%= link_to cart_cart_item_path(item.cart_id, item), method: :delete, data: { confirm: "Etes-vous certain ?" } do %>
+                  <button class="btn btn-primary"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>
+                <% end %>
+              </div>
+            </div>
+          </div>  
+        <% end %>
+      </div>
+      <div class="text-center">
+      <p class="pt-5 pb-2"><strong>Montant total: <%= humanized_money_with_symbol(@cart.amount) %></strong></p>
+      <!-- <%= link_to new_order_path do %>
+          <div class="btn btn-cart">Commander</div>
+      <% end %> -->
+      <%= form_tag orders_path do %>
+          <%= hidden_field_tag 'cart_id', @cart.id %>
+          <% @cart.cart_items.each_with_index do |item, index| %>
+        <%= hidden_field_tag "package_ids[]", item.package.id %>
+        <% end %>
+        <%= submit_tag 'Commander', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
