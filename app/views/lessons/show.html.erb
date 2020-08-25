@@ -1,21 +1,23 @@
-<h1><%= @lesson.name %></h1>
-<div class="details">
-    <%= @lesson.category.name %>
-    <%= @lesson.thematic.name %>
-</div>
-<div class="dates">
-    Début du cours: <%= @lesson.start_time %>  
-    Fin du cours: <%= @lesson.end_time %> 
-</div>
-<div class="capacity">
-    Nombre de places maximales: <%= @lesson.capacity %>
-</div>
-<% if @lesson.full? %>
-    <p>Cours complet</p>
-<% else %>
-    <% if !@lesson.past_lesson? %>
-        <%= link_to new_lesson_booking_path(@lesson) do %>
-            <button class="btn btn-primary">Réserver</button>
+<div class="container">
+    <h1><%= @lesson.name %></h1>
+    <div class="details">
+        <%= @lesson.category.name %>
+        <%= @lesson.thematic.name %>
+    </div>
+    <div class="dates">
+        <p>Début du cours: <%= @lesson.start_time %></p>  
+        <p>Fin du cours: <%= @lesson.start_time + (@lesson.duration * 3600) %></p> 
+    </div>
+    <div class="capacity">
+        Nombre de places maximales: <%= @lesson.capacity %>
+    </div>
+    <% if @lesson.full? %>
+        <p>Cours complet</p>
+    <% else %>
+        <% if !@lesson.past_lesson? %>
+            <%= link_to new_lesson_booking_path(@lesson) do %>
+                <button class="btn btn-primary">Réserver</button>
+            <% end %>
         <% end %>
     <% end %>
-<% end %>
+</div>

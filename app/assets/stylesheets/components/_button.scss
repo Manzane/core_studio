@@ -4,10 +4,16 @@
     min-width: 100px;
     font-size: bold;
     margin: 0.5rem;
+    color: $white;
+    &:hover{
+        color: $white;
+    }
 }
+
 .btn-outline-primary {
     background-color: $white;
-}
-.btn-outline-primary:hover {
-    color: $white;
+    color: $primary;
+    &:hover {
+        color: $white;
+    }
 }
