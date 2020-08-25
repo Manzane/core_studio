@@ -17,3 +17,12 @@
         color: $white;
     }
 }
+
+.btn-lesson {
+    background-color: $white;
+    &.pink { color: $pink;}
+    &.green { color: $green;}
+    &.blue { color: $blue;}
+    &.yellow { color: $yellow;}
+    &.white { color: $gray;}
+}

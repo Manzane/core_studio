@@ -8,20 +8,21 @@
         </div>  
         <% lessons.each do |lesson| %>
           <div class="card mb-3">
-            <div class="card-body bg-secondary card-lesson">
+            <div class="card-body bg-<%= lesson.color%> card-lesson">
               <h5 class="card-title"><%= lesson.name %></h5>
-              <span><i class="far fa-clock"></i> <%= lesson.start_time.to_s(:time) %> - <%= (lesson.start_time + (lesson.duration * 3600)).to_s(:time)%></span>
+              <span><i class="far fa-clock"></i> <%= lesson.start_time.to_s(:time) %> - <%= lesson.end_time.to_s(:time)%></span>
               <div class="card-bottom">
+                <!--
                 <%= link_to lesson_path(lesson) do %>
                   <button class="btn btn-outline-primary">+</button>
-                <% end %>
+                <% end %>-->
                 <% if lesson.full? %>
-                  <div class="text-muted">
+                  <div class="text-muted btn-lesson <%= lesson.color %>">
                   Cours complet
                   </div>
                 <% elsif lesson.one_day_before_lesson? %>
                   <%= link_to new_lesson_booking_path(lesson) do %>
-                    <button class="btn btn-primary">Réserver</button>
+                    <button class="btn btn-lesson <%= lesson.color %>">Réserver</button>
                   <% end %>
                 <% end %>
               </div>

@@ -12,6 +12,7 @@ Trestle.resource(:lessons) do
     column :start_time
     column :duration
     column :capacity
+    column :color
     column :recurring
     column :created_at, align: :center
     actions
@@ -30,6 +31,7 @@ Trestle.resource(:lessons) do
     datetime_field :start_time
     text_field :duration
     text_field :capacity
+    select :color, collection: %w(pink blue yellow white green)
     end
     tab :occurences do
     select :frequency_day, Lesson.frequency_days.keys
