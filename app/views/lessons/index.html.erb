@@ -1,33 +1,35 @@
 <h1 class="planning">Planning</h1> 
-<div class="card card-planning text-center">
-  <div class="card-body">            
-    <%= week_calendar events: @lessons do |date, lessons| %>
-      <div>
-        <%= date.to_s(:long) %>
-      </div>  
-      <% lessons.each do |lesson| %>
-        <div class="card mb-3">
-          <div class="card-body bg-secondary card-lesson">
-            <h5 class="card-title"><%= lesson.name %></h5>
-            <span><i class="far fa-clock"></i> <%= lesson.start_time.to_s(:time) %> - <%= (lesson.start_time + (lesson.duration * 3600)).to_s(:time)%></span>
-            <div class="card-bottom">
-              <%= link_to lesson_path(lesson) do %>
-                <button class="btn btn-outline-primary">+</button>
-              <% end %>
-              <% if lesson.full? %>
-                <div class="text-muted">
-                 Cours complet
-                </div>
-              <% elsif lesson.one_day_before_lesson? %>
-                <%= link_to new_lesson_booking_path(lesson) do %>
-                  <button class="btn btn-primary ">Réserver</button>
+<div class="container">
+  <div class="card card-planning text-center">
+    <div class="card-body">            
+      <%= week_calendar events: @lessons do |date, lessons| %>
+        <div>
+          <%= date.to_s(:long) %>
+        </div>  
+        <% lessons.each do |lesson| %>
+          <div class="card mb-3">
+            <div class="card-body bg-secondary card-lesson">
+              <h5 class="card-title"><%= lesson.name %></h5>
+              <span><i class="far fa-clock"></i> <%= lesson.start_time.to_s(:time) %> - <%= (lesson.start_time + (lesson.duration * 3600)).to_s(:time)%></span>
+              <div class="card-bottom">
+                <%= link_to lesson_path(lesson) do %>
+                  <button class="btn btn-outline-primary">+</button>
                 <% end %>
-              <% end %>
+                <% if lesson.full? %>
+                  <div class="text-muted">
+                  Cours complet
+                  </div>
+                <% elsif lesson.one_day_before_lesson? %>
+                  <%= link_to new_lesson_booking_path(lesson) do %>
+                    <button class="btn btn-primary">Réserver</button>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div> 
 

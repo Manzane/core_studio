@@ -1,7 +1,13 @@
 
 .btn {
-    border-radius: 1em;
+    border-radius: 0.5rem;
+    min-width: 100px;
+    font-size: bold;
+    margin: 0.5rem;
 }
 .btn-outline-primary {
     background-color: $white;
+}
+.btn-outline-primary:hover {
+    color: $white;
 }
