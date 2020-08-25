@@ -1,0 +1,41 @@
+h1.planning {
+    text-align: center;
+}
+
+.bg-light-gray {
+    background-color: $light-gray;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: $white;
+}
+
+.simple-calendar .today.current-month {
+  background: $light-gray;
+}
+
+.card {
+    overflow: hidden;
+    background: white;
+    border: 0px;
+    // box-shadow: 0 0 50px rgba(0,0,0,0.2);
+}
+.card-planning {
+    box-shadow: 0 0 50px rgba(0,0,0,0.2);
+}
+.card-lesson {
+  padding: 0.5rem;
+}
+  
+  
+  .card-product p {
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: .7;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+  
+  .card-product .card-body {
+    padding: 16px;
+  }
+  

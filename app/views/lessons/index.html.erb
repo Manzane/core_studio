@@ -1,30 +1,33 @@
-<h1>Planning</h1>
-<%= week_calendar events: @lessons do |date, lessons| %>
-  <div>
-    <%= date.to_s(:long) %>
-  </div>  
-  <% lessons.each do |lesson| %>
-    <div class="text-center bg-light-gray card border-light mb-3">
-      <div class="card-header">
-        <h5 class="card-title"><%= lesson.name %></h5>
-      </div>
-      <div class="card-body">
-        <p><%= lesson.start_time.to_s(:time) %></p>
-        <p><%= lesson.duration %> heures</p>
-      </div>
-      <div class="card-footer">
-        <%= link_to lesson_path(lesson) do %>
-          <button class="btn btn-primary">Voir plus</button>
-        <% end %>
-        <% if lesson.full? %>
-          <p class="btn-danger">Cours complet</p>
-        <% elsif lesson.one_day_before_lesson? %>
-          <%= link_to new_lesson_booking_path(lesson) do %>
-            <button class="btn btn-primary">Réserver</button>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
+<h1 class="planning">Planning</h1> 
+<div class="card card-planning text-center">
+  <div class="card-body">            
+    <%= week_calendar events: @lessons do |date, lessons| %>
+      <div>
+        <%= date.to_s(:long) %>
+      </div>  
+      <% lessons.each do |lesson| %>
+        <div class="card mb-3">
+          <div class="card-body bg-secondary card-lesson">
+            <h5 class="card-title"><%= lesson.name %></h5>
+            <span><i class="far fa-clock"></i> <%= lesson.start_time.to_s(:time) %> - <%= (lesson.start_time + (lesson.duration * 3600)).to_s(:time)%></span>
+            <div class="card-bottom">
+              <%= link_to lesson_path(lesson) do %>
+                <button class="btn btn-outline-primary">+</button>
+              <% end %>
+              <% if lesson.full? %>
+                <div class="text-muted">
+                 Cours complet
+                </div>
+              <% elsif lesson.one_day_before_lesson? %>
+                <%= link_to new_lesson_booking_path(lesson) do %>
+                  <button class="btn btn-primary ">Réserver</button>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div> 
 
