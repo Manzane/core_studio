@@ -14,7 +14,8 @@ class BookingsController < ApplicationController
     if credits
       @credits = credits.quantity
     else
-      redirect_to packages_path, notice: "Il vous faut des crédits pour réserver une séance"
+      flash.now[:alert] = "Il vous faut des crédits pour réserver une séance"
+      redirect_to packages_path
     end
     # raise
   end

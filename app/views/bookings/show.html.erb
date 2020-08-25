@@ -1,6 +1,10 @@
-<h1>Reservation pour <%= @booking.lesson.name %></h1>
-<div class="booking">
-    <%= @booking.quantity %>
-    <%= @booking.lesson.start_time %>
-    <%= @booking.lesson.end_time %>
+<div class="container">
+    <h1>Reservation pour <%= @booking.lesson.name %></h1>
+    <div class="card card-booking">
+        <div class="card-body">
+        <%= @booking.quantity %>
+        <%= @booking.lesson.start_time %>
+        <%= @booking.lesson.end_time %>
+        </div>
+    </div>
 </div>

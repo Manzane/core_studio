@@ -1,0 +1,25 @@
+.card {
+    overflow: hidden;
+    background: $white;
+        // box-shadow: 0 0 50px rgba(0,0,0,0.2);
+}
+.card-planning, .card-booking {
+    box-shadow: 0 0 50px rgba(0,0,0,0.2);
+    border: 0px;
+}
+.card-lesson {
+  padding: 0.5rem;
+}
+  
+.card-product p {
+font-size: 12px;
+line-height: 1.4;
+opacity: .7;
+margin-bottom: 0;
+margin-top: 8px;
+}
+
+.card-product .card-body {
+padding: 16px;
+}
+  

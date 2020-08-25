@@ -1,15 +1,25 @@
-<h1>Packages de crédits</h1>
-<div>
-    <% @packages.each do |package| %>
-        <div>
-            <p>Crédits pour les <%= package.category.name %></p>
-            <p>Quantité: <%= package.quantity %></p>
-            <p>Prix: <%= humanized_money_with_symbol(package.price) %></p>
-            <!-- DEBUG SI USER NON LOGUÉ-->
-            <% if current_user %>
-            <%= button_to 'Ajouter au panier', cart_cart_items_path(current_user.cart, package_id: package.id)%>
-            <% end %>
-        </div>
-    <% end %>
-</div>  
+<div class="container">
+    <h1>Packages de crédits</h1>
+    <div class="row row-cols-1 row-cols-md-3"> 
+        <% @packages.each do |package| %>
+            <div class="col mb-4">
+                <div class="card">
+                    <img src="https://images.pexels.com/photos/3326362/pexels-photo-3326362.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="card-img-top" alt="package-credit-<%= package.category.name %><%= package.quantity %>">
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><%= package.quantity %> Crédits - <%= package.category.name %></h5>
+                        <p class="card-text">Prix: <%= humanized_money(package.price) %>€</p>
+                        <p class="card-text"><small>Soit <%= package.price / package.quantity%> € l'unité</small></p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <% if current_user %>
+                            <%= button_to 'Ajouter au panier', cart_cart_items_path(current_user.cart, package_id: package.id), class: 'btn btn-primary' %>
+                        <% else %>
+                            <%= button_to 'Se créer un compte', new_user_registration_path, class: 'btn btn-primary' %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        <% end %> 
+    </div>
+</div> 
 

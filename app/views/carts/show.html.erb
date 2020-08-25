@@ -1,21 +1,42 @@
-<h1>Panier</h1>
-<% @cart.cart_items.each do |item| %>
+<div class="container">
+  <h1>Panier</h1>
+  <% if @cart.cart_items.empty? %>
     <div>
-        <%= item.package.quantity %> Crédits
-        <%= item.package.category.name %>
-        <%= link_to cart_cart_item_path(item.cart_id, item), method: :delete, data: { confirm: "Etes-vous certain ?" } do %>
-      <p><%= 'Supprimer du panier' %></p>
-    <% end %>
-    </div>   
-<% end %>
-Montant total: <%= humanized_money_with_symbol(@cart.amount) %>
-<!-- <%= link_to new_order_path do %>
-    <div class="btn btn-cart">Commander</div>
-<% end %> -->
-<%= form_tag orders_path do %>
-    <%= hidden_field_tag 'cart_id', @cart.id %>
-    <% @cart.cart_items.each_with_index do |item, index| %>
-  <%= hidden_field_tag "package_ids[]", item.package.id %>
+      Panier vide !
+    </div>
+  <% else %>
+    <div>
+      <div>
+          <% @cart.cart_items.each do |item| %>
+            <div class="card w-100">
+              <div class="card-body d-flex justify-content-between">
+                <div>
+                  <span class="card-title"><%= item.package.quantity %> Crédits - <%= item.package.category.name %></span>
+                  <span class="card-text"><%= item.package.price %> €</span>  
+                </div>
+                <div>
+                  <%= link_to cart_cart_item_path(item.cart_id, item), method: :delete, data: { confirm: "Etes-vous certain ?" } do %>
+                    <button class="btn btn-primary"><i class="fa fa-trash-alt" aria-hidden="true"></i></button>
+                  <% end %>
+                </div>
+              </div>
+            </div>  
+          <% end %>
+        </div>
+        <div class="text-center">
+        <p class="pt-5 pb-2"><strong>Montant total: <%= humanized_money_with_symbol(@cart.amount) %></strong></p>
+        <!-- <%= link_to new_order_path do %>
+            <div class="btn btn-cart">Commander</div>
+        <% end %> -->
+        <%= form_tag orders_path do %>
+            <%= hidden_field_tag 'cart_id', @cart.id %>
+            <% @cart.cart_items.each_with_index do |item, index| %>
+          <%= hidden_field_tag "package_ids[]", item.package.id %>
+          <% end %>
+          <%= submit_tag 'Commander', class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
-  <%= submit_tag 'Commander', class: 'btn btn-primary' %>
-<% end %>
+</div>
+
