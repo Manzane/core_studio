@@ -49,16 +49,6 @@ class Lesson < ApplicationRecord
   def end_time
     return self.start_time + ( self.duration * 3600)
   end
-  
-  # def recurring=(value)
-  #   super
-  # end
-
-  # def rule
-  #   IceCube::Rule.weekly
-  #   # IceCube::Rule.weekly(2).day(:monday, :tuesday)
-
-  # end
 
   def schedule(day)
     schedule = IceCube::Schedule.new
@@ -78,44 +68,19 @@ class Lesson < ApplicationRecord
       when 'sunday'
         schedule.add_recurrence_rule IceCube::Rule.weekly(1).day(:sunday)
       end
-    # schedule.add_recurrence_rule rule
-    # event_exceptions.each do |exception|
-    #   schedule.add_exception_time(exception.time)
-    # end
+
     schedule
   end
 
 
   def create_recurring_events(day, end_date, start_time)
-  #   if recurring.empty?
-  #     [self]
-  #   else
-    # start_date = Time.now
-    schedule(day).occurrences_between(start_time + 1, end_date).each do |date|
-      Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date, duration: duration, color: color)
+
+    from_date = start_time + 86400 
+    # raise
+    schedule(day).occurrences_between(from_date, end_date).each do |date|
+      # raise
+      Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date.change(offset: "+00:00", hour: start_time.hour, min: start_time.min), duration: duration, color: color)
     end
   end
-  # def create_recurring_events(args = {})
-  # #   if recurring.empty?
-  # #     [self]
-  # #   else
-  #   # start_date = Time.now
-  #   schedule(args[:day]).occurrences_between(args[:start_time], args[:end_date]).each do |date|
-  #     Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date.change({ hour: args[:hour], min: args[:minute], sec: 0 }), duration: duration)
-  #   end
-  # end
-
-  # def schedule(value, options={})
-  #   schedule = IceCube::Schedule.new
-  #   schedule.add_recurrence_rule IceCube::Rule.weekly(value).day(:wednesday, :thursday, :friday))
-  # end
-# funtional fitness lundi 12h15-13h15 et mecredi 19h00-20h (2 weekly)
-# pilates and flow mardi 12h15-13h15 et 19h00-20h00 et jeudi 18h30-19h30 (3 weekly)
-# port de bras mardi 18h00-19h00 et vendredi 10h30 à 11h30 (2 weekly)
-# yoga by core mercredi 18h00-19h00 jeudi 19h00-20h00 vendredi 12h15-13h15 (3 weekly)
-# schedule.add_recurrence_rule IceCube::Rule.weekly(2).day(:monday, :wednesday
-# schedule.add_recurrence_rule IceCube::Rule.weekly(3).day(:tuesday, :tuesday, :thursday))
-# schedule.add_recurrence_rule IceCube::Rule.weekly(2).day(:tuesday, :friday))
-# schedule.add_recurrence_rule IceCube::Rule.weekly(3).day(:wednesday, :thursday, :friday))
 
 end

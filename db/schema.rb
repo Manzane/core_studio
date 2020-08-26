@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_25_153232) do
+ActiveRecord::Schema.define(version: 2020_08_26_074158) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_08_25_153232) do
     t.text "recurring"
     t.float "duration"
     t.integer "frequency_day"
-    t.datetime "end_date"
+    t.datetime "end_date", default: "2020-08-26 07:44:03"
     t.string "color", default: "white"
     t.index ["category_id"], name: "index_lessons_on_category_id"
     t.index ["thematic_id"], name: "index_lessons_on_thematic_id"
