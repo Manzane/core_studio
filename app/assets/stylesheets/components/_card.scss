@@ -7,7 +7,11 @@
   box-shadow: 0 0 50px rgba(0,0,0,0.2);
   border: 0px;
 }
-.card-planning {
+.card-package {
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border: 0px;
+}
+.card-planning, .card-package {
   border-radius: 0.5rem;
 }
 

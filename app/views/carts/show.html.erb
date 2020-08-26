@@ -8,7 +8,7 @@
     <div>
       <div>
           <% @cart.cart_items.each do |item| %>
-            <div class="card w-100">
+            <div class="card w-100 card-package">
               <div class="card-body d-flex justify-content-between">
                 <div>
                   <span class="card-title"><%= item.package.quantity %> Crédits - <%= item.package.category.name %></span>
@@ -24,7 +24,7 @@
           <% end %>
         </div>
         <div class="text-center">
-        <p class="pt-5 pb-2"><strong>Montant total: <%= humanized_money_with_symbol(@cart.amount) %></strong></p>
+        <h5 class="pt-5 pb-2"><strong>Montant total: <%= humanized_money_with_symbol(@cart.amount) %></strong></h5>
         <!-- <%= link_to new_order_path do %>
             <div class="btn btn-cart">Commander</div>
         <% end %> -->

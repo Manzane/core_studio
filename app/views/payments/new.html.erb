@@ -2,9 +2,9 @@
   <div class="row py-4">
     <div class="col">
       <h1>Récapitulatif de Commande</h1>
-      <p>Commande N°<strong><%= @order.id %></strong> pour <strong><%= humanized_money_with_symbol @order.amount %></strong></p>
+      <h5>Commande N°<strong><%= @order.id %></strong> pour <strong><%= humanized_money_with_symbol @order.amount %></strong></h5>
       <% @order.cart.packages.each do |package| %>
-        <div class="card w-100">
+        <div class="card w-100 card-package">
           <div class="card-body">
             <span class="card-title"><%= package.quantity%> Crédits <%= package.category.name %></span>
           </div>
