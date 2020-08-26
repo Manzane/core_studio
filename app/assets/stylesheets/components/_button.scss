@@ -17,3 +17,13 @@
         color: $white;
     }
 }
+
+.btn-lesson {
+    background-color: $white;
+    color: $blue-green;
+    // font-weight: bolder;
+    &:hover {
+        color: $blue-green;
+        font-weight: bold;
+    }
+}

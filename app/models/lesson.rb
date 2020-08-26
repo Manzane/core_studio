@@ -5,6 +5,8 @@ class Lesson < ApplicationRecord
   belongs_to :thematic
   has_many :bookings, dependent: :destroy
   validates :name, :start_time, presence: true
+  validates :color, inclusion: { in: %w(pink blue yellow white green blue-green),
+    message: "%{value} is not a valid color" }
 
   
   def full?
@@ -42,6 +44,10 @@ class Lesson < ApplicationRecord
     else
       return false
     end  
+  end
+
+  def end_time
+    return self.start_time + ( self.duration * 3600)
   end
   
   # def recurring=(value)
@@ -86,7 +92,7 @@ class Lesson < ApplicationRecord
   #   else
     # start_date = Time.now
     schedule(day).occurrences_between(start_time + 1, end_date).each do |date|
-      Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date, duration: duration)
+      Lesson.create!(thematic: thematic, category: category, name: name, capacity: capacity, start_time: date, duration: duration, color: color)
     end
   end
   # def create_recurring_events(args = {})

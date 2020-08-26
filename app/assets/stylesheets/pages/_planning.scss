@@ -17,3 +17,26 @@ h1.planning {
 .simple-calendar .future.next-month {
   background: $white;
 }
+
+.lesson-header {
+  background-color: $blue-green;
+  color: $white;
+  border-radius: 0.5rem;
+  min-height: 4rem;
+  padding: 0.5rem;
+}
+.simple-calendar table.table {
+  border: 0px;
+}
+
+th {
+  display: none;
+}
+.simple-calendar td.day {
+  border: 0px;
+  height: 0px;
+
+}
+div.card.card-planning {
+  height: 100%;
+}
