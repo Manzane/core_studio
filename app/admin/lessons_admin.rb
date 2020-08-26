@@ -13,8 +13,8 @@ Trestle.resource(:lessons) do
     column :duration
     column :capacity
     column :color
-    column :recurring
     column :created_at, align: :center
+    column :updated_at, align: :center
     actions
     actions do |toolbar, instance, admin|
       toolbar.link 'Créer une récurrence', instance, action: :occurrence, method: :post, style: :primary, icon: "fa fa-calendar-alt"
