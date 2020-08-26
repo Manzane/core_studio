@@ -14,7 +14,7 @@
                         <% if current_user %>
                             <%= button_to 'Ajouter au panier', cart_cart_items_path(current_user.cart, package_id: package.id), class: 'btn btn-primary' %>
                         <% else %>
-                            <%= button_to 'Se créer un compte', new_user_registration_path, class: 'btn btn-primary' %>
+                            <%= button_to 'Se créer un compte', new_user_registration_path, class: 'btn btn-primary', method: :get %>
                         <% end %>
                     </div>
                 </div>
