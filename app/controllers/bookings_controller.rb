@@ -8,17 +8,17 @@ class BookingsController < ApplicationController
   def show
   end
 
-  def new
-    @booking = Booking.new
-    credits = current_user.credits.find_by(category_id: @lesson.category_id)
-    if credits
-      @credits = credits.quantity
-    else
-      flash.now[:alert] = "Il vous faut des crédits pour réserver une séance"
-      redirect_to packages_path
-    end
-    # raise
-  end
+  # def new
+  #   @booking = Booking.new
+  #   credits = current_user.credits.find_by(category_id: @lesson.category_id)
+  #   if credits
+  #     @credits = credits.quantity
+  #   else
+  #     flash.now[:alert] = "Il vous faut des crédits pour réserver une séance"
+  #     redirect_to packages_path
+  #   end
+  #   # raise
+  # end
 
   def create
     @booking = Booking.new(booking_params)
@@ -32,15 +32,15 @@ class BookingsController < ApplicationController
         # lesson_booking_path(lesson_id, @booking), notice: "Réservation effectuées"
         else
           flash.now[:alert] = "Réservation non effectuée, dûe à un problème technique, contactez l'administrateur du site"
-          render :new
+          # render :new
         end 
       else
         @booking.errors.full_messages
-          render :new
+          # render :new
       end
     else
       flash.now[:alert] = "Vous avez demandé une quantité supérieure au nombre de vos crédits"
-      render :new
+      # render :new
     end
   end
 
@@ -62,7 +62,8 @@ class BookingsController < ApplicationController
   end
 
   def set_lesson
-    @lesson = Lesson.find(params[:lesson_id])
+    # @lesson = Lesson.find(params[:lesson_id])
+    @lesson = Lesson.find(params[:booking][:lesson_id])
   end
 
   def booking_params

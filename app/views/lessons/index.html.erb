@@ -1,4 +1,4 @@
-<h1 class="planning">Planning</h1> 
+<h1 class="planning">Planning</h1>
 <div class="container">
   <div class="text-center">          
       <%= week_calendar events: @lessons do |date, lessons| %>
@@ -7,6 +7,47 @@
         </div>
         <div class="card card-planning px-2" >
         <% lessons.each do |lesson| %>
+            <!-- Modal -->
+          <div class="modal fade" id="bookingModal-<%=lesson.id%>" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="bookingModalLabel">Réserver</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p> <%= lesson.category.name %> <%= lesson.name %> - <%= lesson.start_time.to_s(:long)%></p>
+                  <p>Vous avez <%=@credits.find_by(category_id: lesson.category_id).quantity %> 
+                  Crédits <%= lesson.category.name %> </p>               
+                  <% if lesson.available_quantity > 0 && @credits.find_by(category_id: lesson.category_id).quantity > 0%>
+                  <div id="datepickr-form">
+                    <%= simple_form_for [@booking] do |f| %>
+                      <div class="form-inputs">
+                        <%= f.hidden_field :lesson_id, value: lesson.id %>
+                        <% if @credits.find_by(category_id: lesson.category_id).quantity >= lesson.available_quantity %>
+                          <%= f.input :quantity, collection: (1..lesson.available_quantity), label: "Nombre de places" %>
+                        <% elsif @credits.find_by(category_id: lesson.category_id).quantity > 0%>
+                          <%= f.input :quantity, collection: (1..@credits.find_by(category_id: lesson.category_id).quantity), label: "Nombre de places" %>
+                        <% end %>
+                        </div>
+                      <div class="form-actions">
+                        <%= f.submit "Réserver", class: 'btn btn-primary' %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% elsif lesson.available_quantity <= 0 %>
+                  <p>Le cours est complet !</p>
+                <% else %>
+                  <p>Il vous faut des crédits pour réserver une séance, rendez-vous dans l'eShop</p>
+                <% end %>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <!-- Fin Modal -->
+
             <div class="card-body bg-<%= lesson.color%> card-lesson my-3">
               <h6 class="card-title"><%= lesson.name %></h6>
               <span><i class="far fa-clock"></i> <%= lesson.start_time.to_s(:time) %> - <%= lesson.end_time.to_s(:time)%></span>
@@ -16,13 +57,13 @@
                   <button class="btn btn-outline-primary">+</button>
                 <% end %>-->
                 <% if lesson.full? %>
-                  <div class="text-muted btn-lesson">
+                  <button class="btn text-muted btn-lesson" disabled>
                   Cours complet
-                  </div>
+                  </button>
                 <% elsif lesson.one_day_before_lesson? %>
-                  <%= link_to new_lesson_booking_path(lesson) do %>
-                    <button class="btn btn-lesson">Réserver</button>
-                  <% end %>
+                  
+                    <button type="button" class="btn btn-lesson" data-toggle="modal" data-target="#bookingModal-<%=lesson.id%>", data: {lesson_id: <%= lesson.id %>}>Réserver</button>
+                 
                 <% end %>
               </div>
             </div>
