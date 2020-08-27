@@ -18,30 +18,34 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <p> <%= lesson.category.name %> <%= lesson.name %> - <%= lesson.start_time.to_s(:long)%></p>
-                  <p>Vous avez <%=@credits.find_by(category_id: lesson.category_id).quantity %> 
-                  Crédits <%= lesson.category.name %> </p>               
-                  <% if lesson.available_quantity > 0 && @credits.find_by(category_id: lesson.category_id).quantity > 0%>
-                  <div id="datepickr-form">
-                    <%= simple_form_for [@booking] do |f| %>
-                      <div class="form-inputs">
-                        <%= f.hidden_field :lesson_id, value: lesson.id %>
-                        <% if @credits.find_by(category_id: lesson.category_id).quantity >= lesson.available_quantity %>
-                          <%= f.input :quantity, collection: (1..lesson.available_quantity), label: "Nombre de places" %>
-                        <% elsif @credits.find_by(category_id: lesson.category_id).quantity > 0%>
-                          <%= f.input :quantity, collection: (1..@credits.find_by(category_id: lesson.category_id).quantity), label: "Nombre de places" %>
+                  <p><%= lesson.category.name %> <%= lesson.name %> - <%= lesson.start_time.to_s(:long)%></p>
+                  <% if current_user && !@credits.empty? %>
+                    <p>Vous avez <%=@credits.find_by(category_id: lesson.category_id).quantity %> 
+                    Crédits <%= lesson.category.name %> </p>               
+                    <% if lesson.available_quantity > 0 && @credits.find_by(category_id: lesson.category_id).quantity > 0%>
+                      <div id="datepickr-form">
+                        <%= simple_form_for [@booking] do |f| %>
+                          <div class="form-inputs">
+                            <%= f.hidden_field :lesson_id, value: lesson.id %>
+                            <% if @credits.find_by(category_id: lesson.category_id).quantity >= lesson.available_quantity %>
+                              <%= f.input :quantity, collection: (1..lesson.available_quantity), label: "Nombre de places" %>
+                            <% elsif @credits.find_by(category_id: lesson.category_id).quantity > 0%>
+                              <%= f.input :quantity, collection: (1..@credits.find_by(category_id: lesson.category_id).quantity), label: "Nombre de places" %>
+                            <% end %>
+                            </div>
+                          <div class="form-actions">
+                            <%= f.submit "Réserver", class: 'btn btn-primary' %>
+                          </div>
                         <% end %>
-                        </div>
-                      <div class="form-actions">
-                        <%= f.submit "Réserver", class: 'btn btn-primary' %>
                       </div>
+                    <% elsif lesson.available_quantity <= 0 %>
+                      <p>Le cours est complet !</p>
+                    <% else %>
+                      <p>Il vous faut des crédits pour réserver une séance, rendez-vous dans l'eShop</p>
                     <% end %>
-                  </div>
-                <% elsif lesson.available_quantity <= 0 %>
-                  <p>Le cours est complet !</p>
-                <% else %>
-                  <p>Il vous faut des crédits pour réserver une séance, rendez-vous dans l'eShop</p>
-                <% end %>
+                  <% else %>
+                    <p>Il vous faut des crédits pour réserver une séance, rendez-vous dans l'eShop</p>
+                  <% end %>
                 </div>
               </div>
             </div>
