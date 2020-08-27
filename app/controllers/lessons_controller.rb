@@ -3,6 +3,8 @@ class LessonsController < ApplicationController
     before_action :set_lesson, only: [:show]
     def index
         @lessons = Lesson.all
+        @booking = Booking.new
+        @credits = current_user.credits
         # @calendar_events = @lessons.flat_map{ |e| e.calendar_events(params.fetch(:start_date, Time.zone.now).to_date) }
     end
 

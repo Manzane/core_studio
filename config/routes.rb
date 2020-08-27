@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   mount StripeEvent::Engine, at: '/stripe-webhooks'
   devise_for :users
   root to: 'lessons#index'
-  resources :lessons, only: [:index, :show] do
-    resources :bookings, only: [:new, :create]
-  end
+  resources :lessons, only: [:index, :show] 
+  resources :bookings, only: [:new, :create]
+  
   
   resources :packages, only: [:index]
 

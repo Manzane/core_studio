@@ -2,7 +2,7 @@
 .btn {
     border-radius: 0.5rem;
     min-width: 100px;
-    font-size: bold;
+    font-weight: bold;
     margin: 0.5rem;
     color: $white;
     &:hover{
@@ -18,7 +18,7 @@
     }
 }
 
-.btn-lesson {
+.btn-lesson, div.text-muted {
     background-color: $white;
     color: $blue-green;
     // font-weight: bolder;
