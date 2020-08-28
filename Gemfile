@@ -42,6 +42,7 @@ gem 'ice_cube', '~> 0.16.3'
 gem 'money-rails', '~>1.12'
 gem 'stripe'
 gem 'stripe_event'
+gem 'rails-i18n'
 
 group :development, :test do  
   gem 'pry-byebug'

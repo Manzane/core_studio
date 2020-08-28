@@ -4,8 +4,11 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   after_action :create_cart_and_assign_to_user, only: [:create]
 
+  protected
+
   def configure_permitted_parameters
     # For additional fields in app/views/devise/registrations/new.html.erb
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])
   end
+
 end

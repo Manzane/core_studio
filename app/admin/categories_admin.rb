@@ -8,7 +8,6 @@ Trestle.resource(:categories) do
   #
   table do
     column :name
-    column :price
     column :created_at, align: :center
     actions
   end
