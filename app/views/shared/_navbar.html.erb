@@ -26,7 +26,7 @@
             <%= link_to "Vos réservations", bookings_path, class: "dropdown-item" %>
             <%= link_to "Vos crédits", credits_path, class: "dropdown-item" %>
             <%= link_to "Vos commandes", orders_path, class: "dropdown-item" %>
-            <%= link_to "Votre profil", "#", class: "dropdown-item" %>
+            <%= link_to "Votre profil", edit_user_registration_path, class: "dropdown-item" %>
             <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

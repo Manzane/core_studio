@@ -15,6 +15,7 @@ fr:
         last_name: "Nom"
         password: "Mot de passe"
         password_confirmation: "Confirmation du mot de passe" 
+        current_password: "Mot de passe actuel" 
         created_at: "Créé le"
         updated_at: "Modifié le" 
       administrator:
