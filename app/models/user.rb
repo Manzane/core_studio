@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one :cart, dependent: :destroy
   has_many :travel_countries, through: :travels
   has_many :credits, dependent: :destroy
+  has_one_attached :avatar
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
