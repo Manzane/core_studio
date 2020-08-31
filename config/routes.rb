@@ -18,5 +18,6 @@ Rails.application.routes.draw do
       resources :cart_items
     end
   end
+  get "/confidentialite", to: "pages#confidentiality"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
