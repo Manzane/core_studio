@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount StripeEvent::Engine, at: '/stripe-webhooks'
-  devise_for :users
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   root to: 'lessons#index'
   resources :lessons, only: [:index, :show] 
   resources :bookings, only: [:new, :create]
