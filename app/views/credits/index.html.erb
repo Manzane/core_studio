@@ -1,11 +1,19 @@
 <div class="container">
     <h1>Vos crédits</h1>
     <div class="credits">
-        <% @credits.each do |credit| %>
-            <p><%= credit.quantity %> Crédit <%= credit.category.name %></p>
-        <% end %>
-        <%= link_to packages_path do %>
-            <button class="btn btn-primary">Acheter des crédits</button>
-        <% end %>
+        <div class="card w-100 m-3 card-booking">
+            <div class="card-body d-flex justify-content-between align align-items-center">
+                <div class="p-1"> 
+                    <% @credits.each do |credit| %>
+                        <p><%= credit.quantity %> Crédit <%= credit.category.name %></p>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <%= link_to packages_path do %>
+                <button class="btn btn-primary">Acheter des crédits</button>
+            <% end %>
+        </div>
     </div>
 </div>
