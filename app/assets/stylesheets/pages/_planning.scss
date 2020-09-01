@@ -10,7 +10,8 @@ h1.planning {
 }
 
 .simple-calendar .today.current-month,
-.simple-calendar .future.prev-month {
+.simple-calendar .future.prev-month,
+.simple-calendar .past.prev-month {
   background: $white;
 }
 
