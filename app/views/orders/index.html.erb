@@ -1,7 +1,7 @@
 
 <div class="container">
     <h1>Liste des commandes</h1>
-    <% @orders.each do |order| %>
+    <% @orders.ordered.each do |order| %>
         <div class="card">
             <p>Commande n°<%= order.id %>, effectuée le <%= order.created_at %></p>
             <p>Pour un montant de <%= humanized_money_with_symbol order.amount %></p>
