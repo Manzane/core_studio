@@ -2,14 +2,18 @@
 <div class="container">
     <h1>Liste des commandes</h1>
     <% @orders.ordered.each do |order| %>
-        <div class="card">
-            <p>Commande n°<%= order.id %>, effectuée le <%= order.created_at %></p>
-            <p>Pour un montant de <%= humanized_money_with_symbol order.amount %></p>
-            <p>Statut: <%= order.state %></p>
-            <p>Détails:</p>
-            <% order.cart.packages.each do |package| %>
-                <p><%= package.quantity%> Crédits <%= package.category.name %></p>
-            <% end %>
+        <div class="cardw-100 m-3 card-booking">
+            <div class="card-body d-flex justify-content-between align align-items-center">
+                <div class="p-1">
+                    <h4>Commande n°<%= order.id %></h4>
+                    <p>Effectuée le <%= I18n.l(order.created_at, format: :long) %>, pour un montant de <%= humanized_money order.amount %> €</p>
+                    <p>Statut: <%= order.state %></p>
+                    <p>Détails de la commande:</p>
+                    <% order.cart.packages.each do |package| %>
+                        <p><%= package.quantity%> Crédits <%= package.category.name %></p>
+                    <% end %>
+                </div>
+            </div>
         </div>
     <% end %> 
 </div>
