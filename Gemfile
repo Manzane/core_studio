@@ -44,6 +44,7 @@ gem 'stripe'
 gem 'stripe_event'
 gem 'rails-i18n'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-facebook'
 
 group :development, :test do  
   gem 'pry-byebug'
