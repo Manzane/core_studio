@@ -17,7 +17,7 @@
                         <div class="card-body d-flex justify-content-between align align-items-center">
                             <div class="p-1"> 
                                 <h4><%= booking.lesson.name %></h4>
-                                <p><%= I18n.l(booking.lesson.start_time, format: :long) %></p>
+                                <p><%= I18n.l(booking.lesson.start_time, format: :long_wo_time) %></p>
                                 <p><i class="far fa-clock"></i> <%= booking.lesson.start_time.to_s(:time) %> - <%= booking.lesson.end_time.to_s(:time)%></p>
                                 <p>Place(s) réservée(s): <%= booking.quantity %></p>
                             </div>
@@ -50,7 +50,7 @@
                         <div class="card-body d-flex justify-content-between align align-items-center">
                             <div class="p-1"> 
                                 <h4><%= booking.lesson.name %></h4>
-                                <p><%= I18n.l(booking.lesson.start_time, format: :long) %></p>
+                                <p><%= I18n.l(booking.lesson.start_time, format: :long_wo_time) %></p>
                                 <p><i class="far fa-clock"></i> <%= booking.lesson.start_time.to_s(:time) %> - <%= booking.lesson.end_time.to_s(:time)%></p>
                                 <p>Place(s) réservée(s): <%= booking.quantity %></p>
                             </div>
