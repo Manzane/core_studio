@@ -3,7 +3,10 @@
   <div class="text-center">          
       <%= week_calendar events: @lessons do |date, lessons| %>
         <div class="lesson-header">
-          <%= date.to_s(:long) %>
+          <p><%= I18n.l(date, format: :day) %></p>
+          <p><%= I18n.l(date, format: :short) %></p>
+          <!-- <%= date.to_s(:long) %> -->
+          <!-- <%= I18n.l(date) %> -->
         </div>
         <div class="card card-planning px-2" >
         <% lessons.each do |lesson| %>

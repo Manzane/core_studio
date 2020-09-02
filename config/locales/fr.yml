@@ -85,15 +85,25 @@ fr:
         name: "Nom"
         created_at: "Créé le"
         updated_at: "Modifié le"
+  simple_calendar:
+    previous: "<<"
+    next: ">>"
+  time:
+    formats:
+      long_wo_time: "%A %d %B %Y"
+      short_wo_time: "%d %b %Y"
+      order: "%d/%m/%Y à %H:%M"
   date:
     abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
     abbr_month_names: [~, Jan, Fév, Mar, Avr, Mai, Jun, Jul, Août, Sep, Oct, Nov, Déc]
     day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
     formats:
+      day: "%A"
       day_month: "%b %d"
       default: "%d/%m/%Y"
       hour: "%H:%M"
       long: "%A %d %B %Y"
+      short: "%d %b %Y"
       long_month: "%d %B %Y"
       month_abbr: "%d %b %Y"
     month_names:
