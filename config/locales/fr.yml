@@ -1,0 +1,116 @@
+fr:
+  activerecord:
+    models:
+      user: "utilisateur"
+      booking: "réservation"
+      administrator: "administrateur"
+      category: "catégorie"
+      order: "commande"
+      package: "package"
+      thematic: "thématique"
+      lesson: "leçon"
+    attributes:
+      user:
+        first_name: "Prénom"
+        last_name: "Nom"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe" 
+        current_password: "Mot de passe actuel" 
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+        remember_me: "Se souvenir de moi" 
+      administrator:
+        first_name: "Prénom"
+        last_name: "Nom"
+        password: "Mot de passe"
+        password_confirmation: "Confirmation du mot de passe"
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+      booking:
+        quantity: "Quantité"
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+        user: "Utilisateur"
+        user_id: "Utilisateur"
+        lesson: "Leçon"
+        lesson_id: "Leçon"
+      cart:
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+        amount_cents: "Prix en centimes"
+      category:
+        name: "Nom"
+        price: "Prix"
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+      credit:
+        quantity: "Quantité"
+        created_at: "Créé le"
+        updated_at: "Modifié le" 
+      lesson:
+        name: "Nom"
+        price: "Prix"
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+        start_time: "Date de début"
+        capacity: "Capacité"
+        duration: "Durée"
+        frequency_day: "Jour récurrent"
+        end_date: "Date de fin de récurrence"
+        color: "Couleur"
+        category: "Catégorie"
+        thematic: "Thématique"
+        category_id: "Catégorie"
+        thematic_id: "Thématique"
+        blue: "bleu"
+      order:
+        date: "Date"
+        state: "Statut"
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+        amount_cents: "Montant en centimes"
+        amount: "Montant"
+        user_id: "Utilisateur"
+        user: "Utilisateur"
+        cart_id: "Panier"
+      package:
+        quantity: "Quantité"
+        created_at: "Créé le"
+        updated_at: "Modifié le" 
+        price_cents: "Prix en centimes"
+        price: "Prix"
+        category: "Catégorie"
+        category_id: "Catégorie" 
+      thematic:
+        name: "Nom"
+        created_at: "Créé le"
+        updated_at: "Modifié le"
+  date:
+    abbr_day_names: [Dim, Lun, Mar, Mer, Jeu, Ven, Sam]
+    abbr_month_names: [~, Jan, Fév, Mar, Avr, Mai, Jun, Jul, Août, Sep, Oct, Nov, Déc]
+    day_names: [Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi]
+    formats:
+      day_month: "%b %d"
+      default: "%d/%m/%Y"
+      hour: "%H:%M"
+      long: "%A %d %B %Y"
+      long_month: "%d %B %Y"
+      month_abbr: "%d %b %Y"
+    month_names:
+    -
+    - Janvier
+    - Février
+    - Mars
+    - Avril
+    - Mai
+    - Juin
+    - Juillet
+    - Août
+    - Septembre
+    - Octobre
+    - Novembre
+    - Décembre
+    order:
+    - :day
+    - :month
+    - :year
