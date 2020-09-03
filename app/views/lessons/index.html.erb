@@ -23,9 +23,11 @@
                 <div class="modal-body">
                   <p><%= lesson.category.name %> <%= lesson.name %> - <%= lesson.start_time.to_s(:long)%></p>
                   <% if current_user && !@credits.empty? %>
-                    <p>Vous avez <%=@credits.find_by(category_id: lesson.category_id).quantity %> 
-                    Crédits <%= lesson.category.name %> </p>               
-                    <% if lesson.available_quantity > 0 && @credits.find_by(category_id: lesson.category_id).quantity > 0%>
+                    <% if !@credits.find_by(category_id: lesson.category_id).nil? %>
+                      <p>Vous avez <%=@credits.find_by(category_id: lesson.category_id).quantity %> 
+                      Crédits <%= lesson.category.name %> </p>
+                    <% end %>               
+                    <% if lesson.available_quantity > 0 && !@credits.find_by(category_id: lesson.category_id).nil? && @credits.find_by(category_id: lesson.category_id).quantity > 0%>
                       <div id="datepickr-form">
                         <%= simple_form_for [@booking] do |f| %>
                           <div class="form-inputs">
