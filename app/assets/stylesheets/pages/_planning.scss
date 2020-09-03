@@ -3,18 +3,15 @@ h1.planning {
 }
 
 .bg-light-gray {
-    background-color: $light-gray;
+  background-color: $light-gray;
 }
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color: $white;
+  background-color: $white;
 }
 
 .simple-calendar .today.current-month,
 .simple-calendar .future.prev-month,
-.simple-calendar .past.prev-month {
-  background: $white;
-}
-
+.simple-calendar .past.prev-month,
 .simple-calendar .future.next-month {
   background: $white;
 }
@@ -22,7 +19,7 @@ h1.planning {
 .lesson-header {
   background-color: $blue-green;
   color: $white;
-  border-radius: 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
   min-height: 4rem;
   padding: 0.5rem;
 }
@@ -43,4 +40,11 @@ div.card.card-planning {
 }
 .table {
   margin-bottom: 8rem;
+
+}.lesson-header p {
+  margin: 0px;
+}
+
+.simple-calendar h6 {
+  font-weight: bold;
 }
