@@ -21,9 +21,6 @@ class OrdersController < ApplicationController
     cart = Cart.find(params[:cart_id])
     # raise
     @order = Order.create!(date: Time.now, amount: cart.amount, state: "en cours", user: current_user, cart: cart)     
-    # <% @order.cart.packages.each do |package| %>
-    #   <li><%= package.quantity%> Crédits <%= package.category.name %></li>
-    #   <% end %>
     session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [{
@@ -41,7 +38,6 @@ class OrdersController < ApplicationController
 
     if @order.save
       # credits_updater = CreditsUpdater.new(params, current_user)
-      # # // category, et la quantité + user//
       # credits_updater.order
       Cart.create(user: current_user)
       redirect_to new_order_payment_path(@order)
