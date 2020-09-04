@@ -1,50 +1,40 @@
-h1.planning {
-    text-align: center;
+
+.planning-container {
+  margin: 1em;
 }
 
-.bg-light-gray {
-  background-color: $light-gray;
+.lt-grid-container {
+  display: grid;
+  // grid-template-columns: repeat(7, 1fr);
+  grid-template-columns:repeat(auto-fit, minmax(16rem, 1fr));
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
 }
-.table-striped tbody tr:nth-of-type(odd) {
+
+.jour {
   background-color: $white;
-}
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin: 10px;
+  border-radius: 0.5rem;
+  border: 0px;
 
-.simple-calendar .today.current-month,
-.simple-calendar .future.prev-month,
-.simple-calendar .past.prev-month,
-.simple-calendar .future.next-month {
-  background: $white;
+}
+h1.planning {
+  text-align: center;
 }
 
 .lesson-header {
-  background-color: $blue-green;
-  color: $white;
-  border-radius: 0.5rem 0.5rem 0 0;
-  min-height: 4rem;
-  padding: 0.5rem;
-}
-.simple-calendar table.table {
-  border: 0px;
+background-color: $blue-green;
+color: $white;
+border-radius: 0.5rem 0.5rem 0 0;
+min-height: 4rem;
+padding: 0.5rem;
 }
 
-th {
-  display: none;
-}
-.simple-calendar td.day {
-  border: 0px;
-  height: 0px;
-
-}
-div.card.card-planning {
-  height: 100%;
-}
-.table {
-  margin-bottom: 8rem;
-
-}.lesson-header p {
-  margin: 0px;
+.lesson-header p {
+margin: 0px;
 }
 
-.simple-calendar h6 {
+.planning-container h6 {
   font-weight: bold;
 }
