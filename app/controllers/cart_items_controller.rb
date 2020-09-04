@@ -40,7 +40,8 @@ class CartItemsController < ApplicationController
   end
 
   def set_cart
-    @cart = Cart.find(current_user.cart.id)
+    # @cart = Cart.find(current_user.cart.id)
+    @cart = Cart.find(params[:cart_id])
   end
 
 
