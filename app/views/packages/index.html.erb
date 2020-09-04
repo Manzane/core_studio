@@ -2,7 +2,7 @@
     <h1>Packages de crédits</h1>
     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1"> 
         <% @packages.each do |package| %>
-            <div class="col mb-4">
+            <div class="col-6 mb-4">
                 <div class="card card-package">
                     <img src="https://images.pexels.com/photos/3326362/pexels-photo-3326362.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="card-img-top" alt="package-credit-<%= package.category.name %><%= package.quantity %>">
                     <div class="card-body text-center">
