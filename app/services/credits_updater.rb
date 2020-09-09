@@ -44,12 +44,11 @@ class CreditsUpdater
 
     def order
         # raise
-        @params[:package_ids].each do |item |
+            # binding.pry
+            category = Category.find(@params["category"].to_i)
+            quantity = @params["quantity"].to_i
             # raise
-            package = Package.find(item)
-            category = Category.find(package.category_id)
-            quantity = package.quantity
-            # raise
+            # binding.pry
             if @user.credits.find_by(category: category)
                 credit = @user.credits.find_by(category_id: category.id)
                 credit.quantity += quantity
@@ -62,6 +61,5 @@ class CreditsUpdater
                     return false
                 end
             end
-        end
     end 
   end
