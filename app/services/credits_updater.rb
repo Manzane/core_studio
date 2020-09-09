@@ -48,7 +48,7 @@ class CreditsUpdater
             category = Category.find(@params["category"].to_i)
             quantity = @params["quantity"].to_i
             # raise
-            binding.pry
+            # binding.pry
             if @user.credits.find_by(category: category)
                 credit = @user.credits.find_by(category_id: category.id)
                 credit.quantity += quantity
