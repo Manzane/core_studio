@@ -2,6 +2,9 @@ Trestle.resource(:packages) do
   remove_action :destroy
   menu do
     item :packages, icon: "fa fa-star", priority: 6, group: 'Commandes'
+  end 
+  active_storage_fields do
+    [:image]
   end
 
   # Customize the table columns shown on the index view.
@@ -20,6 +23,7 @@ Trestle.resource(:packages) do
     select :category_id, Category.all
     number_field :quantity
     number_field :price_cents
+    active_storage_field :image
   end
 
   # By default, all parameters passed to the update and create actions will be

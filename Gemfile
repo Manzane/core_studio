@@ -45,6 +45,8 @@ gem 'stripe_event'
 gem 'rails-i18n'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem 'cloudinary'
+gem 'trestle-active_storage'
 
 group :development, :test do  
   gem 'pry-byebug'
