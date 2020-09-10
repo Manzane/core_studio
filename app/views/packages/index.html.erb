@@ -4,7 +4,11 @@
         <% @packages.each do |package| %>
             <div class="col mb-4">
                 <div class="card card-package">
-                    <img src="https://images.pexels.com/photos/3326362/pexels-photo-3326362.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="card-img-top" alt="package-credit-<%= package.category.name %><%= package.quantity %>">
+                    <% if package.image.attached? %>
+                        <%= cl_image_tag package.image.key, class: "card-img-top" %>
+                    <% else %>
+                        <%= image_tag("pckg.jpg", class: "card-img-top", alt:"package-credit-#{package.category.name}-#{package.quantity}") %>
+                    <% end %>
                     <div class="card-body text-center">
                         <h5 class="card-title"><%= package.quantity %> Crédits - <%= package.category.name %></h5>
                         <p class="card-text">Prix: <%= humanized_money(package.price) %>€</p>
