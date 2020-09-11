@@ -9,6 +9,14 @@
         color: $white;
     }
 }
+.btn-link {
+    color: $primary;
+    text-decoration: none;
+    &:hover{
+        color: $primary;
+        text-decoration: none
+    }
+}
 
 .btn-outline-primary {
     background-color: $white;

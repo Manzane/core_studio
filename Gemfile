@@ -46,7 +46,7 @@ gem 'rails-i18n'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'cloudinary'
-gem 'trestle-active_storage'
+gem 'paper_trail'
 
 group :development, :test do  
   gem 'pry-byebug'
