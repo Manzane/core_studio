@@ -1,40 +1,26 @@
 <div class="container">
     <h1>Vos crédits</h1>
-    <div class="credits">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active" id="current-tab" data-toggle="tab" href="#current" role="tab" aria-controls="current" aria-selected="true">Crédits actuels</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="history-tab" data-toggle="tab" href="#history" role="tab" aria-controls="history" aria-selected="false">Historique des crédits</a>
-            </li>
-          </ul>
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tab">
-                <div class="card w-100 m-3 card-booking">
-                    <div class="card-body d-flex justify-content-between align align-items-center">
-                        <div class="p-1"> 
-                            <% @credits.each do |credit| %>
-                                <p><%= credit.quantity %> Crédit <%= credit.category.name %></p>
-                            <% end %>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <%= link_to packages_path do %>
-                        <button class="btn btn-primary">Acheter des crédits</button>
-                    <% end %>
-                </div>  
+    <div class="credits"><div id="accordion">
+        <% @credits.each do |credit| %>
+        <div class="card card-booking">
+          <div class="card-header" id="heading<%= credit.id %>">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse<%= credit.id %>" aria-expanded="true" aria-controls="collapse<%= credit.id %>">
+                <%= credit.quantity %> Crédit <%= credit.category.name %>
+              </button>
+            </h5>
+          </div>
+      
+          <div id="collapse<%= credit.id %>" class="collapse" aria-labelledby="heading<%= credit.id %>" data-parent="#accordion">
+            <div class="card-body">
+                <% credit.versions.each do |version| %>
+                    <p>Quantité: <%= version.reify.quantity%> le <%= I18n.l(version.reify.updated_at, format: :long) %></p>
+                <% end %>        
             </div>
-            <div class="tab-pane fade" id="history" role="tabpanel" aria-labelledby="history-tab">
-                <div class="card w-100 m-3 card-booking">
-                    <div class="card-body d-flex justify-content-between align align-items-center">
-                        <div class="p-1"> 
-                            <p>Historique</p>
-                        </div>
-                    </div>
-                </div>  
-            </div>
+          </div>
         </div>
+        <% end %>
+      </div>
     </div>
 </div>
+
