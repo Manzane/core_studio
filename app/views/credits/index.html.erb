@@ -1,24 +1,25 @@
 <div class="container">
     <h1>Vos crédits</h1>
-    <div class="credits"><div id="accordion">
+    <p>Retrouvez ici l'historique de vos crédits</p>
+    <div class="credits">
+      <div id="accordion">
         <% @credits.each do |credit| %>
-        <div class="card card-booking">
-          <div class="card-header" id="heading<%= credit.id %>">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse<%= credit.id %>" aria-expanded="true" aria-controls="collapse<%= credit.id %>">
-                <%= credit.quantity %> Crédit <%= credit.category.name %>
-              </button>
-            </h5>
-          </div>
-      
-          <div id="collapse<%= credit.id %>" class="collapse" aria-labelledby="heading<%= credit.id %>" data-parent="#accordion">
-            <div class="card-body">
-                <% credit.versions.each do |version| %>
-                    <p>Quantité: <%= version.reify.quantity%> - le <%= I18n.l(version.reify.updated_at, format: :short) %></p>
-                <% end %>        
+          <div class="card card-booking">
+            <div class="card-header" id="heading<%= credit.id %>">
+              <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse<%= credit.id %>" aria-expanded="true" aria-controls="collapse<%= credit.id %>">
+                  <%= credit.quantity %> Crédit <%= credit.category.name %>
+                </button>
+              </h5>
+            </div>
+            <div id="collapse<%= credit.id %>" class="collapse" aria-labelledby="heading<%= credit.id %>" data-parent="#accordion">
+              <div class="card-body">
+                  <% credit.versions.each do |version| %>
+                      <p>Quantité: <%= version.reify.quantity%> - le <%= I18n.l(version.reify.updated_at, format: :short) %></p>
+                  <% end %>        
+              </div>
             </div>
           </div>
-        </div>
         <% end %>
       </div>
     </div>
