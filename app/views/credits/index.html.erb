@@ -14,9 +14,10 @@
             </div>
             <div id="collapse<%= credit.id %>" class="collapse" aria-labelledby="heading<%= credit.id %>" data-parent="#accordion">
               <div class="card-body">
-                  <% credit.versions.each do |version| %>
-                      <p>Quantité: <%= version.reify.quantity%> - le <%= I18n.l(version.reify.updated_at, format: :short) %></p>
-                  <% end %>        
+                <p>Quantité actuelle: <%= credit.quantity %> - le <%= I18n.l(credit.updated_at, format: :short) %></p>
+                <% credit.versions.each do |version| %>
+                    <p>Quantité: <%= version.reify.quantity%> - le <%= I18n.l(version.reify.updated_at, format: :short) %></p>
+                <% end %>        
               </div>
             </div>
           </div>
