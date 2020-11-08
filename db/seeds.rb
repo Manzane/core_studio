@@ -18,7 +18,7 @@ cours = Category.create!(name: "Cours")
 stage = Category.create!(name: "Stage")
 coaching = Category.create!(name: "Coaching")
 
-Credit.create(quantity: 10, user: test_user, category: cours)
+# Credit.create(quantity: 10, user: User.last, category: Category.first)
 Credit.create(quantity: 10, user: test_user, category: stage)
 
 Lesson.create!(name: "Yoga Vinyasa", capacity: 8, category: cours, thematic: yoga, start_time: DateTime.new(2020,8,24,12,15), duration: 1, color: "blue")
