@@ -7,16 +7,20 @@
           <div class="card card-booking">
             <div class="card-header" id="heading<%= credit.id %>">
               <h5 class="mb-0">
+                <% if !credit.nil? %>
                 <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse<%= credit.id %>" aria-expanded="true" aria-controls="collapse<%= credit.id %>">
                   <%= credit.quantity %> Crédit <%= credit.category.name %>
                 </button>
+              <% end %>
               </h5>
             </div>
             <div id="collapse<%= credit.id %>" class="collapse" aria-labelledby="heading<%= credit.id %>" data-parent="#accordion">
               <div class="card-body">
                 <p>Quantité actuelle: <%= credit.quantity %> - le <%= I18n.l(credit.updated_at, format: :short) %></p>
                 <% credit.versions.each do |version| %>
+                  <% if !version.reify.nil? %>
                     <p>Quantité: <%= version.reify.quantity%> - le <%= I18n.l(version.reify.updated_at, format: :short) %></p>
+                  <% end %>
                 <% end %>        
               </div>
             </div>
