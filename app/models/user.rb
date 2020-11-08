@@ -12,6 +12,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
 
+  after_create :create_credits
+
   def self.from_omniauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, email: auth.info.email).first
     unless user
@@ -19,6 +21,13 @@ class User < ApplicationRecord
       Cart.create(user: user)
     end
     user
+  end
+
+  def create_credits
+    categories = Category.all
+    categories.each do |category|
+      Credit.create!(user: self, category: category, quantity: 0)
+    end
   end
 
 end
