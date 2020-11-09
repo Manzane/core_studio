@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :credits, dependent: :destroy
   has_one_attached :avatar
 
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
 
