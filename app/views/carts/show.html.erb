@@ -28,13 +28,14 @@
         <!-- <%= link_to new_order_path do %>
             <div class="btn btn-cart">Commander</div>
         <% end %> -->
-        <%= form_tag orders_path do %>
+        <p>La commande en ligne est momentanément désactivée, mais celà arrive bientôt !</p> 
+        <!-- <%= form_tag orders_path do %>
             <%= hidden_field_tag 'cart_id', @cart.id %>
             <% @cart.cart_items.each_with_index do |item, index| %>
           <%= hidden_field_tag "package_ids[]", item.package.id %>
           <% end %>
           <%= submit_tag 'Commander', class: 'btn btn-primary' %>
-        <% end %>
+        <% end %> -->
       </div>
     </div>
   <% end %>
