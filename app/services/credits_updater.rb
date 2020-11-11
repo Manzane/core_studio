@@ -1,4 +1,6 @@
 class CreditsUpdater
+    attr_accessor :credits
+    
     def initialize(params, user, options={})
       @params = params
       @user = user
@@ -6,7 +8,6 @@ class CreditsUpdater
         @lesson = options[:lesson]
       end
     end
-    attr_accessor :credits
 
     def check_credits
         category = Category.find(@lesson.category_id)
