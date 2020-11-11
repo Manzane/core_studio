@@ -56,6 +56,8 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     autoprefixer-rails (9.8.5)
       execjs
     awesome_print (1.8.0)
@@ -78,6 +80,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.2)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dotenv (2.7.6)
@@ -115,6 +120,10 @@ GEM
       activerecord
       kaminari-core (= 1.2.1)
     kaminari-core (1.2.1)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
     listen (3.2.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -181,6 +190,7 @@ GEM
       pry (~> 0.13.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    public_suffix (4.0.5)
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
@@ -315,10 +325,12 @@ DEPENDENCIES
   byebug
   cloudinary
   devise
+  devise_invitable (~> 2.0.0)
   dotenv-rails
   font-awesome-sass
   ice_cube (~> 0.16.3)
   jbuilder (~> 2.7)
+  letter_opener
   listen (~> 3.2)
   money-rails (~> 1.12)
   omniauth-facebook

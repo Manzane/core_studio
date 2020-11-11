@@ -9,9 +9,12 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :credits
   has_one_attached :avatar
 
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
+
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
   after_create :create_credits
 
