@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_paper_trail_whodunnit
   include ApplicationHelper
-  after_action :create_cart_and_assign_to_user, only: [:create]
+  after_action :create_cart_and_assign_to_user, only: [:create, :update]
 
   protected
 

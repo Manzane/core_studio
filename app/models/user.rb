@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
 
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable, :rememberable, :validatable, :trackable,
          :omniauthable, omniauth_providers: [:google_oauth2, :facebook]
 
   validates :first_name, presence: true
@@ -32,6 +32,14 @@ class User < ApplicationRecord
     categories.each do |category|
       Credit.create!(user: self, category: category, quantity: 0)
     end
+  end
+
+  def pending?
+    invitation_accepted_at.blank?
+  end
+
+  def signed_in?
+    sign_in_count > 0
   end
 
 end
