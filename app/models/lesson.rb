@@ -38,7 +38,7 @@ class Lesson < ApplicationRecord
     end  
   end
   def past_lesson?
-    if ((self.start_time -  DateTime.now).to_i / 86400) < 1
+    if self.start_time <  DateTime.now
       # raise
     return true
     else

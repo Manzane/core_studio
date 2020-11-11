@@ -69,10 +69,9 @@
                   <button class="btn text-muted btn-lesson" disabled>
                   Cours complet
                   </button>
-                <% elsif !lesson.past_lesson? %>
                   
+                <% elsif !lesson.past_lesson? %>
                     <button type="button" class="btn btn-lesson" data-toggle="modal" data-target="#bookingModal-<%=lesson.id%>", data: {lesson_id: <%= lesson.id %>}>Réserver</button>
-                 
                 <% end %>
               </div>
             </div>
