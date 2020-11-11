@@ -55,6 +55,7 @@ Trestle.resource(:users) do
       user = User.new(params[:user])
       user.valid?
       user.errors.messages.except!(:password) #remove password from errors
+      # binding.pry
       if (user.errors.any?)
         flash.now[:error] = flash_message("create.failure", title: "Warning!", message: "Please correct the errors below.")
         render "new", status: :unprocessable_entity
