@@ -2,12 +2,18 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
+    <style type="text/css">
+      p {color: #353A40; font-size: 12px;}
+      h1 {color: #005C67; font-size: 16px;}
+     .center {display: block; margin: 0 auto;}
+     .header {background-color: #353A40; height: 20vh;}
+      a, a:hover {color: #005C67;}
     </style>
   </head>
-
   <body>
     <%= yield %>
+    <div>
+      <img src="https://core-studio.herokuapp.com/assets/logo-core-75a84b0c509e7d01d2fa135d01e80f47fc228da88b29531198f910557cda24ba.jpg" alt="logo Core Studio" width="200">
+    </div>
   </body>
 </html>
