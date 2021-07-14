@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_11_11_081439) do
     t.text "recurring"
     t.float "duration"
     t.integer "frequency_day"
-    t.datetime "end_date", default: "2020-08-26 07:44:03"
+    t.datetime "end_date", default: "2021-05-27 10:12:46"
     t.string "color", default: "white"
     t.index ["category_id"], name: "index_lessons_on_category_id"
     t.index ["thematic_id"], name: "index_lessons_on_thematic_id"
