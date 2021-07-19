@@ -6,7 +6,8 @@
                 <div class="p-1">
                     <h4>Commande n°<%= order.id %></h4>
                     <p>Effectuée le <%= I18n.l(order.created_at, format: :order) %>, pour un montant de <%= humanized_money order.amount %> €</p>
-                    <p>Statut: <%= order.state %></p>
+                    <!-- <p>Statut: <%= order.state %></p> -->
+                    <p>Statut: <%= order.status %></p>
                     <p>Détails de la commande:</p>
                     <% order.cart.packages.each do |package| %>
                         <p><%= package.quantity%> Crédits <%= package.category.name %></p>

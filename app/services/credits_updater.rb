@@ -32,9 +32,13 @@ class CreditsUpdater
     end
     
     def decrease
-        category = Category.find(@lesson.category_id)
+        if @params["category"].nil?
+            category = Category.find(@lesson.category_id)
+        else
+            category = Category.find(@params["category"].to_i)
+        end
         credit = @user.credits.find_by(category_id: category.id)
-        credit.quantity -= @params[:quantity].to_i
+        credit.quantity -= @params["quantity"].to_i
         # raise
         if credit.save!
             return true

@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :orders, dependent: :destroy
   has_many :carts, dependent: :destroy
-  has_many :travel_countries, through: :travels
   has_many :credits, dependent: :destroy
   accepts_nested_attributes_for :credits
   has_one_attached :avatar
