@@ -5,4 +5,8 @@ class Package < ApplicationRecord
   has_one_attached :image
   
   validates :quantity, presence: true
+  scope :published, -> { where(published: true) }
+  scope :unpublished, -> { where(published: false) }
+  
+  scope :from_published_categories, -> { joins(:category).merge(Category.published) }
 end
