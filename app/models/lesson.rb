@@ -7,6 +7,8 @@ class Lesson < ApplicationRecord
   validates :name, :start_time, presence: true
   validates :color, inclusion: { in: %w(pink blue yellow white green blue-green),
     message: "%{value} is not a valid color" }
+  scope :future, -> { where("start_time > ?", DateTime.now) }
+  scope :past, -> { where("start_time < ?", DateTime.now) }
 
   
   def full?

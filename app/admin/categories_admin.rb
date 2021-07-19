@@ -3,11 +3,17 @@ Trestle.resource(:categories) do
   menu do
     item :categories, icon: "fa fa-boxes", priority: 1, group: 'Cours'
   end
+  scopes do
+    scope :pushlished, -> { Category.published }, label: 'Publiées', default: true
+    scope :draft, -> { Category.unpublished }, label: 'Dépubliées'
+    scope :total, -> { Category.all }, label: 'Toutes'
+  end
 
   # Customize the table columns shown on the index view.
   #
   table do
     column :name
+    column :published
     column :created_at, align: :center
     actions
   end
@@ -16,6 +22,7 @@ Trestle.resource(:categories) do
   #
   form do |category|
     text_field :name
+    check_box :published
   end
 
   # By default, all parameters passed to the update and create actions will be

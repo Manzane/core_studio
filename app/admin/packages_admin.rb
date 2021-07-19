@@ -6,6 +6,11 @@ Trestle.resource(:packages) do
   active_storage_fields do
     [:image]
   end
+  scopes do
+    scope :pushlished, -> { Package.published }, label: 'Publiés', default: true
+    scope :draft, -> { Package.unpublished }, label: 'Dépubliés'
+    scope :total, -> { Package.all }, label: 'Tous'
+  end
 
   # Customize the table columns shown on the index view.
   #
@@ -13,6 +18,7 @@ Trestle.resource(:packages) do
     column :category
     column :quantity
     column :price
+    column :published
     column :created_at, align: :center
     actions
   end
@@ -20,7 +26,8 @@ Trestle.resource(:packages) do
   # Customize the form fields shown on the new/edit views.
   #
   form do |package|
-    select :category_id, Category.all
+    select :category_id, Category.published
+    check_box :published
     number_field :quantity
     number_field :price_cents
     active_storage_field :image

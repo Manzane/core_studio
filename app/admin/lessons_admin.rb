@@ -2,6 +2,10 @@ Trestle.resource(:lessons) do
   menu do
     item :lessons, icon: "fa fa-calendar-alt", priority: 3, group: 'Planning'
   end
+  scopes do
+    scope :past, -> { Lesson.past }, label: 'Passées', default: true
+    scope :future, -> { Lesson.future }, label: 'Futurs'
+  end
 
   # Customize the table columns shown on the index view.
   #
@@ -26,8 +30,8 @@ Trestle.resource(:lessons) do
   form do |lesson|
     tab :lessons do
     text_field :name
-    select :category_id, Category.all
-    select :thematic_id, Thematic.all
+    select :category_id, Category.published
+    select :thematic_id, Thematic.published
     datetime_field :start_time
     text_field :duration
     text_field :capacity
