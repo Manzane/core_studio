@@ -1,5 +1,5 @@
 Trestle.resource(:packages) do
-  remove_action :destroy
+  # remove_action :destroy
   menu do
     item :packages, icon: "fa fa-star", priority: 6, group: 'Commandes'
   end 

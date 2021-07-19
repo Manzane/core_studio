@@ -26,16 +26,16 @@
         <div class="text-center">
         <h5 class="pt-5 pb-2"><strong>Montant total: <%= humanized_money(@cart.amount) %> €</strong></h5>
         <!-- <%= link_to new_order_path do %>
-            <div class="btn btn-cart">Commander</div>
-        <% end %> -->
-        <p>La commande en ligne est momentanément désactivée, mais celà arrive bientôt !</p> 
-        <!-- <%= form_tag orders_path do %>
+            <div class="btn btn-cart">Demande de crédits</div>
+        <% end %>
+        <p>La commande en ligne est momentanément désactivée, mais celà arrive bientôt !</p> -->
+        <%= form_tag orders_path do %>
             <%= hidden_field_tag 'cart_id', @cart.id %>
             <% @cart.cart_items.each_with_index do |item, index| %>
           <%= hidden_field_tag "package_ids[]", item.package.id %>
           <% end %>
-          <%= submit_tag 'Commander', class: 'btn btn-primary' %>
-        <% end %> -->
+          <%= submit_tag 'Demande de crédits', class: 'btn btn-primary' %>
+        <% end %> 
       </div>
     </div>
   <% end %>
