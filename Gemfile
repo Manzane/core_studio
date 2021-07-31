@@ -45,6 +45,7 @@ gem 'stripe_event'
 gem 'rails-i18n'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
+gem "omniauth-rails_csrf_protection"
 gem 'cloudinary'
 gem 'paper_trail'
 gem 'devise_invitable', '~> 2.0.0'
