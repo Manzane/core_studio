@@ -3,7 +3,7 @@
 <% end %>
 ou <br>
 <%- if devise_mapping.omniauthable? %>
-  <%= link_to "Se connecter avec Google", omniauth_authorize_path(:user, :google_oauth2), class: "btn btn-outline-primary" %><br />
+  <%= link_to "Se connecter avec Google", omniauth_authorize_path(:user, :google_oauth2), class: "btn btn-outline-primary", method: :post %><br />
 <% end %>
 
 
