@@ -22,9 +22,9 @@ Trestle.resource(:orders) do
     column :created_at, align: :center
     actions
      actions do |toolbar, instance, admin|
-      toolbar.link 'Valider', instance, action: :validate, method: :post, style: :primary, icon: "fas fa-credit-card", label: 'fds' if instance.waiting? && !instance.cancelled?
-      toolbar.link 'Annuler', instance, action: :cancel, method: :post, style: :primary, icon: "fas fa-times", label: 'fds' if instance.waiting? 
-      toolbar.link 'Décréditer', instance, action: :cancel_credits, method: :post, style: :primary, icon: "fab fa-creative-commons-nc-eu", label: 'fds' if instance.paid? 
+      toolbar.link 'Valider', instance, action: :validate, method: :post, style: :success, icon: "fas fa-credit-card", label: 'Valider' if instance.waiting? && !instance.cancelled?
+      toolbar.link 'Annuler', instance, action: :cancel, method: :post, style: :danger, icon: "fas fa-times", label: 'Annuler' if instance.waiting? 
+      toolbar.link 'Décréditer', instance, action: :cancel_credits, method: :post, style: :danger, icon: "fab fa-creative-commons-nc-eu", label: 'Décréditer' if instance.paid? 
 
     end
   end
