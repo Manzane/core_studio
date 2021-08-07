@@ -32,14 +32,9 @@
                         <%= simple_form_for [@booking] do |f| %>
                           <div class="form-inputs">
                             <%= f.hidden_field :lesson_id, value: lesson.id %>
-                            <% if @credits.find_by(category_id: lesson.category_id).quantity >= lesson.available_quantity %>
-                              <%= f.input :quantity, collection: (1..lesson.available_quantity), label: "Nombre de places" %>
-                            <% elsif @credits.find_by(category_id: lesson.category_id).quantity > 0%>
-                              <%= f.input :quantity, collection: (1..@credits.find_by(category_id: lesson.category_id).quantity), label: "Nombre de places" %>
-                            <% end %>
-                            </div>
+                          </div>
                           <div class="form-actions">
-                            <%= f.submit "Réserver", class: 'btn btn-primary' %>
+                            <%= f.submit "Réserver une place", class: 'btn btn-primary' %>
                           </div>
                         <% end %>
                       </div>
@@ -67,9 +62,12 @@
                 <% end %>-->
                 <% if lesson.full? %>
                   <button class="btn text-muted btn-lesson" disabled>
-                  Cours complet
+                    Cours complet
                   </button>
-                  
+                <% elsif lesson.bookings && lesson.bookings.exists?(user: current_user) %> 
+                  <button class="btn text-muted btn-lesson" disabled>
+                    Réservé
+                  </button>
                 <% elsif !lesson.past_lesson? %>
                     <button type="button" class="btn btn-lesson" data-toggle="modal" data-target="#bookingModal-<%=lesson.id%>", data: {lesson_id: <%= lesson.id %>}>Réserver</button>
                 <% end %>
