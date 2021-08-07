@@ -24,6 +24,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(booking_params)
     @booking.lesson_id = @lesson.id
     @booking.user_id = current_user.id
+    @booking.quantity = 1
     credits_updater = CreditsUpdater.new(booking_params, current_user, {lesson: @lesson})
     if credits_updater.check_credits
       if @booking.save
