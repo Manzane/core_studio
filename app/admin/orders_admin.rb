@@ -41,11 +41,12 @@ Trestle.resource(:orders) do
 
   controller do
     def validate
-        @order = Order.find(params[:id])
-        user = @order.user
+      @order = Order.find(params[:id])
+      user = @order.user
+      @order.transaction do
         # raise
         @order.status = 1
-        if @order.save
+        if @order.save!
           packages = @order.cart.packages
           packages.each do |package|
             quantity = package.quantity
@@ -58,12 +59,13 @@ Trestle.resource(:orders) do
           flash[:message] = "Commande marquée comme payée"
           redirect_to orders_admin_index_path
         end
+      end
     end
     def cancel
       @order = Order.find(params[:id])
       # raise
       @order.status = 2
-      if @order.save
+      if @order.save!
         flash[:message] = "Commande marquée comme annulée"
         redirect_to orders_admin_index_path
       end
@@ -71,18 +73,20 @@ Trestle.resource(:orders) do
     def cancel_credits
       @order = Order.find(params[:id])
       user = @order.user
+      @order.transaction do
       # raise
-      @order.status = 3
-      if @order.save
-        packages = @order.cart.packages
-        packages.each do |package|
-          quantity = package.quantity
-          category = package.category
-          credits_updater = CreditsUpdater.new({"quantity" => quantity, "category" => category.id}, user)
-          credits_updater.decrease
+        @order.status = 3
+        if @order.save!
+          packages = @order.cart.packages
+          packages.each do |package|
+            quantity = package.quantity
+            category = package.category
+            credits_updater = CreditsUpdater.new({"quantity" => quantity, "category" => category.id}, user)
+            credits_updater.decrease
+          end
+          flash[:message] = "Commande marquée comme annulée et crédits enlevés"
+          redirect_to orders_admin_index_path
         end
-        flash[:message] = "Commande marquée comme annulée et crédits enlevés"
-        redirect_to orders_admin_index_path
       end
     end
   end

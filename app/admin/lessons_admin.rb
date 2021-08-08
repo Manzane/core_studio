@@ -22,7 +22,7 @@ Trestle.resource(:lessons) do
     # actions
     actions do |toolbar, instance, admin|
       toolbar.link 'Créer une récurrence', instance, action: :occurrence, method: :post, style: :primary, icon: "fa fa-calendar-alt"
-      toolbar.link 'Annuler et recréditer', instance, action: :cancel, method: :post, style: :danger, icon: "fas fa-sign-out-alt"
+      toolbar.link 'Annuler cours et recréditer', instance, action: :cancel, method: :post, style: :danger, icon: "fas fa-sign-out-alt" if !instance.bookings.empty? 
     end
     actions
   end
@@ -60,14 +60,19 @@ Trestle.resource(:lessons) do
       @lesson = Lesson.find(params[:id])
       category = Category.find(@lesson.category_id)
       bookings = @lesson.bookings
-      bookings.each do |booking|
-        user = booking.user
-        credit = user.credits.find_by(category_id: category.id)
-        credit.quantity += booking.quantity
-        credit.save!
+      @lesson.transaction do 
+        Credit.transaction do
+          bookings.each do |booking|
+            user = booking.user
+            credit = user.credits.find_by(category_id: category.id)
+            credit.quantity += booking.quantity
+            credit.save!
+          end
+        end
+        @lesson.destroy!
+        flash[:message] = "Les comptes on été recrédités"
+        redirect_to lessons_admin_index_path
       end
-      flash[:message] = "Les comptes on été recrédités"
-      redirect_to lessons_admin_index_path
     end
   end
   routes do

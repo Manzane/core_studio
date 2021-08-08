@@ -27,17 +27,19 @@ class BookingsController < ApplicationController
     @booking.quantity = 1
     credits_updater = CreditsUpdater.new(booking_params, current_user, {lesson: @lesson})
     if credits_updater.check_credits
-      if @booking.save
-        if credits_updater.decrease
-          redirect_to bookings_path, notice: "Réservation effectuée"
-        # lesson_booking_path(lesson_id, @booking), notice: "Réservation effectuées"
+      @booking.transaction do
+        if @booking.save!
+          if credits_updater.decrease
+            redirect_to bookings_path, notice: "Réservation effectuée"
+          # lesson_booking_path(lesson_id, @booking), notice: "Réservation effectuées"
+          else
+            flash.now[:alert] = "Réservation non effectuée, dûe à un problème technique, contactez l'administrateur du site"
+            # render :new
+          end 
         else
-          flash.now[:alert] = "Réservation non effectuée, dûe à un problème technique, contactez l'administrateur du site"
-          # render :new
-        end 
-      else
-        @booking.errors.full_messages
-          # render :new
+          @booking.errors.full_messages
+            # render :new
+        end
       end
     else
       flash.now[:alert] = "Vous avez demandé une quantité supérieure au nombre de vos crédits"
@@ -47,11 +49,13 @@ class BookingsController < ApplicationController
 
   def destroy
     @lesson = @booking.lesson
-    if @lesson.one_day_before_lesson?
-      credits_updater = CreditsUpdater.new(@booking, current_user, {lesson: @lesson})
-      credits_updater.increase
+    @lesson.transaction do
+      if @lesson.one_day_before_lesson?
+        credits_updater = CreditsUpdater.new(@booking, current_user, {lesson: @lesson})
+        credits_updater.increase
+      end
+      @booking.destroy
     end
-    @booking.destroy
     redirect_to bookings_path, notice: "Réservation annulée et compte recrédité !"
   end
 
