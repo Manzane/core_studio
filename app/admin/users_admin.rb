@@ -5,10 +5,10 @@ Trestle.resource(:users) do
   end
 
   scopes do
+    scope :total, -> { User.where.not(last_sign_in_at: nil) }, label: 'Total Comptes actifs'
     scope :active, -> { User.where.not(invitation_accepted_at: nil) }, label: 'Invitation acceptée', default: true
     scope :pending, -> { User.where(invitation_accepted_at: nil, last_sign_in_at: nil) }, label: 'Invitation en attente'
     scope :created, -> { User.where.not(last_sign_in_at: nil).where(invitation_accepted_at: nil) }, label: 'Compte créé'
-    scope :total, -> { User.where.not(last_sign_in_at: nil) }, label: 'Total Comptes actifs'
   end
 
   # Customize the table columns shown on the index view.
