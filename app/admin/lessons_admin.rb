@@ -3,8 +3,8 @@ Trestle.resource(:lessons) do
     item :lessons, icon: "fa fa-calendar-alt", priority: 3, group: 'Planning'
   end
   scopes do
-    scope :past, -> { Lesson.past }, label: 'Passées', default: true
-    scope :future, -> { Lesson.future }, label: 'Futurs'
+    scope :future, -> { Lesson.future }, label: 'Futurs', default: true
+    scope :past, -> { Lesson.past }, label: 'Passées'
   end
 
   # Customize the table columns shown on the index view.
