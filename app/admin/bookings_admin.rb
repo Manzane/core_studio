@@ -3,9 +3,8 @@ Trestle.resource(:bookings) do
   menu do
     item :bookings, icon: "fa fa-calendar-check", priority: 5, group: 'Planning'
   end
-  scope :past, -> { Booking.past }, label: 'Passées', default: true
   scope :future, -> { Booking.future }, label: 'Futurs'
-
+  scope :past, -> { Booking.past }, label: 'Passées', default: true
   # Customize the table columns shown on the index view.
   #
   table do
