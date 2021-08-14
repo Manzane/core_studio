@@ -4,7 +4,7 @@ Trestle.resource(:categories) do
     item :categories, icon: "fa fa-boxes", priority: 1, group: 'Cours'
   end
   scopes do
-    scope :pushlished, -> { Category.published }, label: 'Publiées', default: true
+    scope :published, -> { Category.published }, label: 'Publiées', default: true
     scope :draft, -> { Category.unpublished }, label: 'Dépubliées'
     scope :total, -> { Category.all }, label: 'Toutes'
   end
