@@ -10,6 +10,7 @@ Trestle.resource(:bookings) do
   #
   table do
     column :lesson
+    column :start_time, -> (booking) { booking.lesson.start_time }
     column :user
     column :quantity
     column :created_at, align: :center
