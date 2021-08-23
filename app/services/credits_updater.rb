@@ -4,7 +4,7 @@ class CreditsUpdater
     def initialize(params, user, options={})
       @params = params
       @user = user
-      @quantity = 1
+      @quantity = @params["quantity"].present? ? @params["quantity"] : 1
       if options.has_key?(:lesson)
         @lesson = options[:lesson]
       end
