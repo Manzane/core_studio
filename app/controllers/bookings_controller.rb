@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
             redirect_to bookings_path, notice: "Réservation effectuée"
           # lesson_booking_path(lesson_id, @booking), notice: "Réservation effectuées"
           else
-            flash.now[:alert] = "Réservation non effectuée, dûe à un problème technique, contactez l'administrateur du site"
+            flash.now[:alert] = "Réservation non effectuée, dûe à un problème technique, contactez l'administrateur du site !"
             # render :new
           end 
         else
