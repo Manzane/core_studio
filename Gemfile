@@ -26,7 +26,7 @@ gem 'redis', '~> 4.0'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.15', require: false
 
 gem 'devise'
 
@@ -49,6 +49,9 @@ gem "omniauth-rails_csrf_protection"
 gem 'cloudinary'
 gem 'paper_trail'
 gem 'devise_invitable', '~> 2.0.0'
+gem 'globalid', '~> 1.0'
+gem 'net-smtp', require: false
+gem 'psych', '< 4'
 
 group :development, :test do  
   gem 'pry-byebug'
