@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '3.1.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
@@ -12,7 +12,7 @@ gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
+gem 'webpacker', '~> 5.4.3'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -26,7 +26,7 @@ gem 'redis', '~> 4.0'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', '>= 1.15', require: false
 
 gem 'devise'
 
@@ -49,6 +49,9 @@ gem "omniauth-rails_csrf_protection"
 gem 'cloudinary'
 gem 'paper_trail'
 gem 'devise_invitable', '~> 2.0.0'
+gem 'globalid', '~> 1.0'
+gem 'net-smtp', require: false
+gem 'psych', '< 4'
 
 group :development, :test do  
   gem 'pry-byebug'
