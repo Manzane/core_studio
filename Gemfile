@@ -51,6 +51,7 @@ gem 'paper_trail'
 gem 'devise_invitable', '~> 2.0.0'
 gem 'globalid', '~> 1.0'
 gem 'net-smtp', require: false
+gem 'net-imap', require: false
 gem 'net-pop', require: false
 gem 'psych', '< 4'
 
