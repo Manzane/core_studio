@@ -1,7 +1,7 @@
 Trestle.resource(:users) do
   # remove_action :destroy, :new, :update
   menu do
-    item :users, icon: "fa fa-users", priority: 8
+    item :users, icon: "fa fa-users", priority: 1
   end
 
   scopes do
@@ -51,6 +51,12 @@ Trestle.resource(:users) do
   end
   
   controller do
+    def index
+      toolbar(:primary) do |t|
+        t.link("Export all", admin.path(:export_all))
+      end
+    end
+
     def create    
       user = User.new(params[:user])
       user.valid?
@@ -76,10 +82,15 @@ Trestle.resource(:users) do
       flash[:message] = "Une nouvelle invitation a été envoyée à #{user.email}"
       redirect_to users_admin_index_path(scope: 'pending')
     end
+
+    def export_all
+      DataExportService.new.call
+    end
   end
 
   routes do
     post :reinvite, on: :member
+    get :export_all, on: :collection
   end
 
 
