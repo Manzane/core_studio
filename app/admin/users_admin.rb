@@ -85,6 +85,8 @@ Trestle.resource(:users) do
 
     def export_all
       DataExportService.new.call
+      flash[:message] = "L'export a commencé, il sera envoyé via email en csv"
+      redirect_to users_admin_index_path(scope: 'total')
     end
   end
 
